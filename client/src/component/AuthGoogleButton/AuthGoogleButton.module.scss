@@ -1,0 +1,15 @@
+@import "../../index.scss";
+
+.auth_google_btn {
+    background: none;
+    border-radius: 20px;
+    color: $red;
+    border: 1px solid $red;
+    width: 100%;
+    margin-top: 5px;
+
+    &:hover {
+      color: white;
+      background-color: $red;
+    }
+  }
