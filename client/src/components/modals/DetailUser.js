@@ -15,6 +15,8 @@ import "./modal.scss";
 import { fetchOrdersUser, getOneOrderProducts } from "../../http/orderAPI";
 import DetailOrdersForAdmin from "./DetailOrdersForAdmin";
 import ChangeRole from "./ChangeRole";
+import BannedUser from "./BannedUser";
+import UnbannedUser from "./UnbannedUser";
 
 export default function DetailUser({ show, handleClose, data, reRender }) {
   const [orders, setOrders] = useState([]);
@@ -42,7 +44,6 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
 
   const viewDetailOrder = (id) => {
     getOneOrderProducts(id).then((data) => {
-      console.log(data);
       setChooseOrderDetailId(id);
       setChooseOrderDetail(data);
       setShowDetailModal(true);
@@ -51,6 +52,12 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
 
   const [showChangeRoleModal, setShowChangeRoleModal] = useState(false);
   const handleCloseChangeRoleUserModal = () => setShowChangeRoleModal(false);
+
+  const [showBannedUserModal, setShowBannedUserModal] = useState(false);
+  const handleShowBannedUserModal = () => setShowBannedUserModal(false);
+
+  const [showUnbannedUserModal, setShowUnbannedUserModal] = useState(false);
+  const handleShowUnbannedUserModal = () => setShowUnbannedUserModal(false);
 
   return (
     <>
@@ -67,6 +74,20 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
           <Modal.Title>Информация о пользователе</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <Row>
+            <Col>
+              {data.bannedUser.length !== 0 ? (
+                <Alert variant="danger">
+                  <Alert.Heading>
+                    Данный аккаунт пользователя заблокирован!
+                  </Alert.Heading>
+                  <p>Причина блокировки: {data.bannedUser[0].reason}</p>
+                </Alert>
+              ) : (
+                ""
+              )}
+            </Col>
+          </Row>
           <Row>
             <Col className="d-flex justify-content-center">
               {(data.isVkAccount || data.isGoogleAccount) &&
@@ -245,9 +266,21 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
                   </Button>
                 </Row>
                 <Row className="m-2">
-                  <Button variant="outline-warning">
-                    Заблокировать аккаунт
-                  </Button>
+                  {data.bannedUser.length !== 0 ? (
+                    <Button
+                      variant="outline-success"
+                      onClick={() => setShowUnbannedUserModal(true)}
+                    >
+                      Разблокировать аккаунт
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline-warning"
+                      onClick={() => setShowBannedUserModal(true)}
+                    >
+                      Заблокировать аккаунт
+                    </Button>
+                  )}
                 </Row>
                 <Row className="m-2">
                   <Button variant="outline-danger" disabled>
@@ -288,6 +321,36 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
             userId={data.id}
             role={data.role}
             reRender={reRender}
+          />
+        ) : (
+          ""
+        )}
+      </Suspense>
+
+      <Suspense>
+        {showBannedUserModal ? (
+          <BannedUser
+            show={showBannedUserModal}
+            handleClose={handleShowBannedUserModal}
+            email={data.email}
+            userId={data.id}
+            reRender={reRender}
+          />
+        ) : (
+          ""
+        )}
+      </Suspense>
+
+      <Suspense>
+        {showUnbannedUserModal ? (
+          <UnbannedUser
+            show={showUnbannedUserModal}
+            handleClose={handleShowUnbannedUserModal}
+            reason={data.bannedUser[0].reason}
+            bannedDate={data.bannedUser[0].createdAt}
+            reRender={reRender}
+            email={data.email}
+            userId={data.id}
           />
         ) : (
           ""

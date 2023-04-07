@@ -169,6 +169,18 @@ export const changePassword = async (user_data) => {
   return data;
 };
 
+export const bannedUserApi = async (user_data) => {
+  const { data } = await $authHost.post("api/users/banned", user_data);
+  return data;
+};
+
+export const unbannedUserApi = async (userId, email) => {
+  const { data } = await $authHost.delete(`api/users/unbanned?userId=${userId}&email=${email}`);
+  return data;
+};
+
+
+
 export const checkResetPasswordToken = async (user_data) => {
   const { data } = await $authHost.post(
     "api/reset-password/check-token",
