@@ -8,7 +8,7 @@ import {
   MdImage,
   MdMap,
   MdOutlineDomainVerification,
-  MdPattern,
+  MdPerson,
   MdQuestionAnswer,
   MdQuiz,
   MdReviews,
@@ -39,6 +39,7 @@ import {
   ADMIN_SIZE_ROUTE,
   ADMIN_SLIDER_ROUTE,
   ADMIN_STATISTIC_ROUTE,
+  ADMIN_USERS_ROUTE,
 } from "../../../utils/consts";
 import "./SideBar.scss";
 
@@ -96,6 +97,21 @@ const SideBar = ({ show, handleClose }) => {
                     </Col>
                     <Col xs={6} className="sidebar_row_text">
                       Бренды и типы
+                    </Col>
+                  </Row>
+                </Col>
+              </Link>
+            </Row>
+
+            <Row className="sidebar_row">
+              <Link to={ADMIN_USERS_ROUTE}>
+                <Col xs={12} className="sidebar_col">
+                  <Row>
+                    <Col xs={6} className="sidebar_row_icons">
+                      <MdPerson size={"30px"} />
+                    </Col>
+                    <Col xs={6} className="sidebar_row_text">
+                      Пользователи
                     </Col>
                   </Row>
                 </Col>

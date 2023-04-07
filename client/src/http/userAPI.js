@@ -113,8 +113,22 @@ export const getAllUser = async () => {
   return data;
 };
 
+export const getAllUserForAdmin = async (page, limit, name) => {
+  const { data } = await $authHost.get(
+    `api/users/get-all/users-for-admin?page=${page}&limit=${limit}&name=${name}`
+  );
+  return data;
+};
+
 export const getMoneyUserApi = async () => {
   const { data } = await $authHost.get(`api/users/get-all/money-users`);
+  return data;
+};
+
+export const changeRoleUser = async (id, role) => {
+  const { data } = await $authHost.put(
+    `api/users/update/update-role/${id}?role=${role}`
+  );
   return data;
 };
 
@@ -137,24 +151,21 @@ export const updateUserDataAvatar = async (id, body) => {
 };
 
 export const fetchUserFromStatistic = async () => {
-  const { data } = await $authHost.get(
-    `api/statistics/count-users-in-month`
-  );
+  const { data } = await $authHost.get(`api/statistics/count-users-in-month`);
   return data;
 };
 
-
 // ResetPassword
 export const createForgotPasswordLink = async (user_data) => {
-  const { data } = await $authHost.post("api/reset-password/get-letter", user_data);
+  const { data } = await $authHost.post(
+    "api/reset-password/get-letter",
+    user_data
+  );
   return data;
 };
 
 export const changePassword = async (user_data) => {
-  const { data } = await $authHost.post(
-    "api/reset-password/reset",
-    user_data
-  );
+  const { data } = await $authHost.post("api/reset-password/reset", user_data);
   return data;
 };
 

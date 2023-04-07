@@ -127,7 +127,7 @@ console.log(user);
             <div className="d-flex flex-column align-items-center text-center p-3 py-5 relative">
               <div className="relative">
                 <div
-                  className="avatar_profile"
+                  className="avatar_profile-lk"
                   style={{
                     backgroundImage: `url(${
                       user.userProf.avatarFlag

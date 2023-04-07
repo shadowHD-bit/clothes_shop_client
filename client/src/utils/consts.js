@@ -16,6 +16,7 @@ export const ADMIN_RULES_ROUTE = '/admin_rules'
 export const ADMIN_STATISTIC_ROUTE = '/admin_statistic'
 export const ADMIN_LOCATION_ROUTE = '/admin_location'
 export const ADMIN_COUPONS_ROUTE = '/admin_coupon'
+export const ADMIN_USERS_ROUTE = '/admin_users'
 
 export const THANKS_ROUTE = '/thanks'
 export const LOGIN_ROUTE = '/login'
