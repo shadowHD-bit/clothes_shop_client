@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { bannedUserApi } from "../../http/userAPI";
+import ToastError from "../../component/Toast/Toast";
 
 export default function BannedUser({
   show,
@@ -9,13 +10,25 @@ export default function BannedUser({
   email,
   reRender,
 }) {
+  const [showToast, setShowToast] = useState(false);
+  const [thisMessage, setThisMessage] = useState("");
+
+  const handleCloseToast = () => {
+    setShowToast(false);
+  };
+
   const [valueReason, setValueReason] = useState("");
 
   const banned = () => {
-    bannedUserApi({email: email, reason: valueReason, userId: userId}).then(data => {
-        handleClose()
-        reRender()
-    })
+    bannedUserApi({ email: email, reason: valueReason, userId: userId })
+      .then((data) => {
+        handleClose();
+        reRender();
+      })
+      .catch((e) => {
+        setThisMessage(e.response.data.message);
+        setShowToast(true);
+      });
   };
 
   return (
@@ -52,6 +65,12 @@ export default function BannedUser({
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <ToastError
+        onHide={() => handleCloseToast()}
+        show={showToast}
+        message={thisMessage}
+      />
     </>
   );
 }

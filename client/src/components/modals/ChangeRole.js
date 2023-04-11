@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { changeRoleUser } from "../../http/userAPI";
+import ToastError from "../../component/Toast/Toast";
 
 export default function ChangeRole({
   show,
@@ -11,11 +12,23 @@ export default function ChangeRole({
   role,
   reRender,
 }) {
+  const [showToast, setShowToast] = useState(false);
+  const [thisMessage, setThisMessage] = useState("");
+
+  const handleCloseToast = () => {
+    setShowToast(false);
+  };
+
   const changeRole = (role) => {
-    changeRoleUser(userId, role).then(() => {
-      reRender();
-      handleClose();
-    });
+    changeRoleUser(userId, role)
+      .then(() => {
+        reRender();
+        handleClose();
+      })
+      .catch((e) => {
+        setThisMessage(e.response.data.message);
+        setShowToast(true);
+      });
   };
 
   return (
@@ -73,6 +86,12 @@ export default function ChangeRole({
           <Button onClick={handleClose}>Закрыть</Button>
         </Modal.Footer>
       </Modal>
+
+      <ToastError
+        onHide={() => handleCloseToast()}
+        show={showToast}
+        message={thisMessage}
+      />
     </>
   );
 }
