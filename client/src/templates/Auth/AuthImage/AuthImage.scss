@@ -1,0 +1,56 @@
+@import "../../../index.scss";
+
+.auth_card_right {
+  padding: 0;
+  margin: 0;
+  background-image: url("https://i.pinimg.com/736x/5c/e1/99/5ce1993b62f690ef35167acf5ec7d34d.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .img_row {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+  }
+
+  .img_col {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-bottom: 20px;
+
+    .register_text {
+      text-align: end;
+      font-size: 30px;
+      font-weight: bold;
+      width: 80%;
+      line-height: 30px;
+    }
+
+    .register_btn {
+      border-radius: 10px;
+      background: none;
+      color: white;
+      border: 1px solid $red;
+      padding: 5px 30px;
+      background-color: $red;
+      &:hover {
+        color: $red;
+        background-color: white;
+      }
+    }
+  }
+}

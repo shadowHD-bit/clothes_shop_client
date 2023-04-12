@@ -1,0 +1,92 @@
+@import "../../../index.scss";
+
+.alert_login_error {
+  position: absolute;
+  padding: 5px;
+  width: 100%;
+  top: -60px;
+  text-align: center;
+}
+
+.alert_error_container {
+  position: relative;
+  height: 0px;
+}
+
+.error_alert {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  position: absolute;
+  z-index: 99;
+  right: 0;
+  color: #fff;
+  background-color: $red;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.auth_card_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  padding-bottom: 60px;
+
+  .title_auth {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+
+    .name_shop {
+      font-size: 25px;
+      font-weight: 900;
+
+      .dot_shop {
+        color: $red;
+      }
+    }
+  }
+
+  .sub_text {
+    font-size: 14px;
+    color: $grey;
+    text-align: center;
+  }
+
+  .auth_card_input {
+    border-radius: 10px;
+    margin: 5px 0px;
+    padding-left: 15px;
+  }
+
+  .login_btn {
+    border-radius: 20px;
+    background: none;
+    color: rgb(53, 150, 53);
+    border: 1px solid rgb(53, 150, 53);
+    padding: 5px 30px;
+    width: 100%;
+    &:hover {
+      color: white;
+      background-color: rgb(53, 150, 53);
+    }
+  }
+
+  .register_btn {
+    border-radius: 20px;
+    background: none;
+    color: white;
+    border: 1px solid $red;
+    padding: 5px 30px;
+    width: 100%;
+    background-color: $red;
+    &:hover {
+      color: $red;
+      background-color: white;
+    }
+  }
+
+}
