@@ -35,6 +35,11 @@ const Location = () => {
     return (
       <>
         <Container className="map_container">
+        <Row>
+            <p className="location_title">
+              Основные <span className="red">локации</span>
+            </p>
+          </Row>
           <Row className="d-flex flex-row align-items-center">
             <Col xs={4}>
               <Row>

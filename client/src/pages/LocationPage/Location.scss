@@ -1,7 +1,20 @@
+@import "../../index.scss";
+
 .map_container {
   font-family: "Montserrat", sans-serif;
   .map {
     border-radius: 30px;
+  }
+
+  .location_title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
+  }
+
+  .red {
+    color: $red;
   }
 
   .text_info {
