@@ -1,0 +1,74 @@
+@import "../../../index.scss";
+
+.reg_card_right {
+  margin: 50px 0px;
+
+  .title {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+
+    .name_shop {
+      font-size: 25px;
+      font-weight: 900;
+
+      .dot_shop {
+        color: $red;
+      }
+    }
+  }
+
+  .sub_text {
+    font-size: 14px;
+    color: $grey;
+    text-align: center;
+  }
+
+  .title_form {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .form-floating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px 10px;
+  }
+
+  .reg_card_input {
+    border-radius: 10px;
+    margin: 5px 0px;
+  }
+
+  .register_btn {
+    border-radius: 20px;
+    background: none;
+    color: white;
+    border: 1px solid $red;
+    padding: 5px 30px;
+    width: 80%;
+    background-color: $red;
+    &:hover {
+      color: $red;
+      background-color: white;
+    }
+  }
+
+  .remove_login {
+    text-decoration: none;
+    color: $grey;
+    text-align: center;
+    &:hover {
+      color: black;
+    }
+  }
+
+  .invalid-tooltip {
+    right: 0;
+  }
+}

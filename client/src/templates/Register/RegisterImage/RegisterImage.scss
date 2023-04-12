@@ -1,0 +1,43 @@
+@import "../../../index.scss";
+
+.reg_card_left {
+  padding: 0;
+  margin: 0;
+  background-image: url("http://klublady.ru/uploads/posts/2022-03/1646978761_90-klublady-ru-p-obraz-muzhskaya-letnyaya-odezhda-foto-91.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .img_row {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+  }
+
+  .img_col {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-bottom: 20px;
+
+    .register_text {
+      text-align: end;
+      font-size: 30px;
+      font-weight: bold;
+      width: 80%;
+      line-height: 30px;
+    }
+  }
+}
