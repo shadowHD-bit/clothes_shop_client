@@ -1,8 +1,21 @@
-.rules{
-    padding: 30px 10px;
+@import "../../index.scss";
 
-    .accordion-button:not(.collapsed){
-        background-color: rgba(133, 0, 0, 0.466);
-        color: rgb(109, 0, 0);
-    }
+.rules {
+  padding: 30px 10px;
+
+  .accordion-button:not(.collapsed) {
+    background-color: rgba(133, 0, 0, 0.466);
+    color: rgb(0, 0, 0);
+  }
+
+  .rules_title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
+  }
+
+  .red {
+    color: $red;
+  }
 }
