@@ -1,0 +1,26 @@
+@import "../../index.scss";
+
+.delivery_info {
+  padding: 50px 0px;
+
+  .delivery_title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
+  }
+
+  .red {
+    color: $red;
+  }
+
+  .delivery_card_popular {
+    margin: 0;
+    box-shadow: none;
+    border: 1px solid $red;
+    border-radius: 5px;
+    transition: 0.5s ease all;
+    color: $red;
+    margin: 10px 0px;
+  }
+}
