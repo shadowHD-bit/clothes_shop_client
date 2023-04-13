@@ -5,6 +5,7 @@ import { oferta } from "../../utils/oferta";
 
 import "./Rules.scss";
 import { Link } from "react-router-dom";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
 
 export default function () {
   return (
@@ -63,7 +64,7 @@ export default function () {
 
           <Row>
             <p className="rules_title">
-              Официальная <span className="red">оферта</span>
+              Публичная <span className="red">оферта</span>
             </p>
           </Row>
           <Row className="mb-5">
@@ -88,6 +89,7 @@ export default function () {
             </Col>
           </Row>
         </Container>
+        <NavigationBlock />
       </div>
     </div>
   );

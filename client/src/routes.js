@@ -5,7 +5,6 @@ import Auth from './pages/Auth/Auth'
 import ProguctPage from './pages/ProductPage/ProductPage'
 import Register from './pages/Registration/RegisterPage'
 import Location from './pages/LocationPage/Location'
-import About from './pages/AboutUs/AboutUs'
 import SimleProduct from './pages/SpecialProductPage/SimpleProductPage'
 import RulesPage from './pages/RulesPage/Rules'
 import { ADMIN_BADGE_ROUTE, ADMIN_BRANDANDTYPE_ROUTE, ADMIN_BUTTONS_ROUTE, ADMIN_COLORS_ROUTE, ADMIN_COUPONS_ROUTE, ADMIN_EXCEL_ROUTE, ADMIN_IMG_ROUTE, ADMIN_LOCATION_ROUTE, ADMIN_ORDER_ROUTE, ADMIN_PRODUCT_ROUTE, ADMIN_QUESTION_ROUTE, ADMIN_REVIEW_ROUTE, ADMIN_ROUTE, ADMIN_RULES_ROUTE, ADMIN_SIZE_ROUTE, ADMIN_SLIDER_ROUTE, ADMIN_STATISTIC_ROUTE, ADMIN_USERS_ROUTE, ADMIN_USER_ROUTE, BASKET_ROUTE, CHECKOUTING_ROUTE, CHECKOUT_ROUTE, FORGOT_PASSWORD_ROUTE, LIKES_ROUTER, LOGIN_ROUTE, NOTIFICATION_ROUTE, ORDERS_ROUTE, PRODUCT_ROUTE, QUESTION_ROUTE, REGISTRATION_ROUTE, RESET_PASSWORD_ROUTE, RULES_ROUTE, SHOP_ROUTE, THANKS_ROUTE, USERPROFILE_ROUTE } from './utils/consts'
@@ -38,6 +37,7 @@ import LocationAdmin from './pages/Admin/AdminCatalog/Location/LocationAdmin'
 import AdminCoupons from './pages/Admin/AdminCatalog/Coupons/AdminCoupons'
 import ThanksPage from './pages/ThanksPage/ThanksPage'
 import UsersAdminPage from './pages/Admin/AdminCatalog/Users/UsersAdminPage'
+import AboutUs from './pages/AboutUs/AboutUs'
 
 export const authRoutes = [
     {
@@ -181,7 +181,7 @@ export const publicRoutes = [
     },
     {
         path: ABOUT_ROUTE,
-        element: <About />
+        element: <AboutUs />
     },
     {
         path: PRODUCT_ROUTE,

@@ -1,0 +1,18 @@
+@import "../../../index.scss";
+
+.about_site {
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+  .about_title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
+  }
+
+  .red {
+    color: $red;
+  }
+}

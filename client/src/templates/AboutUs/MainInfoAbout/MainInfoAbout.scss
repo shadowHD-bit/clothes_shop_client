@@ -1,0 +1,25 @@
+@import "../../../index.scss";
+
+.main_about {
+  background-color: white;
+  vertical-align: middle;
+  padding: 20px 0px;
+
+  .imgLogo {
+    width: 60%;
+  }
+
+  .text_logo {
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    font-weight: 900;
+    color: $black;
+    display: block;
+    width: fit-content;
+
+    .logo_dot {
+      color: $red;
+    }
+  }
+}

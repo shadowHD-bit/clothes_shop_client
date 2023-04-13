@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useEffect } from "react";
 import { fetchRules } from "../../http/rulesAPI";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
 
 export default function () {
   const [question, setQuestion] = useState([]);
@@ -66,6 +67,7 @@ export default function () {
           </Accordion>
         </Row>
       </Container>
+      <NavigationBlock />
     </>
   );
 }

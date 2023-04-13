@@ -7,6 +7,7 @@ import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps";
 import { fetchLocations } from "../../http/locationAPI";
 import "./Location.scss";
 import MapComponent from "./MapComponent";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
 const mapState = {
   center: [55.345304, 86.099415],
   zoom: 5,
@@ -72,6 +73,7 @@ const Location = () => {
             </Col>
           </Row>
         </Container>
+        <NavigationBlock />
       </>
     );
   }
