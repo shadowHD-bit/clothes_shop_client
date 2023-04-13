@@ -1,0 +1,20 @@
+@import '../../index.scss';
+
+.refund_container {
+  padding: 50px 0px;
+
+  .refund_title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
+  }
+
+  a{
+    color: $red;
+  }
+
+  .red {
+    color: $red;
+  }
+}

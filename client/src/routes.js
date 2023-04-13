@@ -39,6 +39,8 @@ import ThanksPage from './pages/ThanksPage/ThanksPage'
 import UsersAdminPage from './pages/Admin/AdminCatalog/Users/UsersAdminPage'
 import AboutUs from './pages/AboutUs/AboutUs'
 import DeliveryPage from './pages/DeliveryPage/DeliveryPage'
+import { REFUND_ROUTE } from './utils/consts'
+import RefundPage from './pages/RefundPage/RefundPage'
 
 export const authRoutes = [
     {
@@ -199,5 +201,9 @@ export const publicRoutes = [
     {
         path: DELIVERY_ROUTE,
         element: <DeliveryPage />
+    },
+    {
+        path: REFUND_ROUTE,
+        element: <RefundPage />
     },
 ]

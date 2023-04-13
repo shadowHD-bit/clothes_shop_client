@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import "./NavigationBlock.scss";
 import { FaBuilding, FaLocationArrow, FaQuoteRight, FaTruck } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ABOUT_ROUTE, DELIVERY_ROUTE, LOCATIONPLACES_ROUTE, QUESTION_ROUTE, RULES_ROUTE } from "../../utils/consts";
+import { ABOUT_ROUTE, DELIVERY_ROUTE, LOCATIONPLACES_ROUTE, QUESTION_ROUTE, REFUND_ROUTE, RULES_ROUTE } from "../../utils/consts";
 import { IoMdDocument } from "react-icons/io";
 import { AiOutlineReload } from "react-icons/ai";
 
@@ -59,7 +59,7 @@ export default function NavigationBlock() {
             </Col>
 
             <Col xs={12} sm={6} md={4}>
-              <Link to={DELIVERY_ROUTE}>
+              <Link to={REFUND_ROUTE}>
                 <Card className="navigation_card">
                   <Row className="mb-4">
                     <AiOutlineReload size={40} />
