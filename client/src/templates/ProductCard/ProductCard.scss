@@ -1,0 +1,209 @@
+@import "../../index.scss";
+
+.product_card-page {
+  margin: 10px 5px;
+  box-shadow: none !important;
+  border-radius: 8px;
+  border: 1px solid rgb(212, 212, 212);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+
+  .btn_like_out {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin-top: 50px;
+
+    &:hover,
+    &:active,
+    &:checked {
+      transition: 0.5s ease all;
+      -webkit-box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+      -moz-box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+      box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .btn_like_in {
+    background-color: rgba(255, 255, 255, 0.336);
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin-top: 50px;
+    transition: 0.5s ease all;
+
+    &:hover {
+      transition: 0.5s ease all;
+      -webkit-box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+      -moz-box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+      box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .btn_eye {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    transition: 0.5s ease all;
+
+    &:hover {
+      transition: 0.5s ease all;
+      background-color: rgba(255, 255, 255, 0.336);
+      border-radius: 50%;
+      border: 1px solid white;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      -webkit-box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+      -moz-box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+      box-shadow: 4px -15px 57px -3px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .popular_product_card-body {
+    transition: 0.5s ease all;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+
+    .btn-container{
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: -200px
+    }
+
+    .product-param {
+      color: white;
+      margin: 10px 10px !important;
+
+      .product-rating,
+      .product-type,
+      .product-brand {
+        display: flex;
+        justify-content: flex-end;
+        visibility: hidden;
+        transform: translateX(300px);
+
+        .text {
+          margin-right: 7px !important;
+        }
+      }
+    }
+
+    .product-name {
+      color: white;
+      visibility: hidden;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0s;
+      display: flex;
+      justify-content: flex-start;
+      align-items: end;
+      text-align: end;
+      position: absolute;
+      bottom: 30px;
+      p {
+        transform: translateX(-450px);
+      }
+    }
+
+    .product-price {
+        color: white;
+        visibility: hidden;
+        font-weight: bold;
+        font-size: 25px;
+        transition: 0s;
+        display: flex;
+        justify-content: flex-start;
+        align-items: end;
+        text-align: end;
+        position: absolute;
+        bottom: 0;
+        p {
+          transform: translateX(-450px);
+        }
+      }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.514);
+      transition: 0.5s ease all;
+
+      .product-name {
+        visibility: visible;
+        transition: 0s;
+
+        p {
+          transition: 0.5s ease all;
+          transform: translateX(0px);
+        }
+      }
+
+      .product-price {
+        visibility: visible;
+        transition: 0s;
+
+        p {
+          transition: 0.5s ease all;
+          transform: translateX(0px);
+        }
+      }
+
+      
+    .btn-container{
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 20%;
+        transition: 0.5s ease all;
+    }
+
+      .product-param {
+        .product-rating,
+        .product-type,
+        .product-brand {
+          visibility: visible;
+          transition: 0.5s ease all;
+          transform: translateX(-0px);
+        }
+      }
+    }
+  }
+}

@@ -47,6 +47,13 @@ const NotificationPage = () => {
   return (
     <>
       <Container className="notification_container" fluid={"md"}>
+      <Row>
+          <Col>
+            <p className="title">
+              <span className="red"> Ваши </span> уведомления
+            </p>
+          </Col>
+        </Row>
         {notification.length !== 0 ? (
           notification?.map((item) => (
             <Card className="notification_card">

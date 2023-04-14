@@ -166,7 +166,7 @@ const Order = () => {
             </Dropdown>
           </Col>
         </Row>
-        <Row className="mt-3">
+        <Row className="mt-3 w-100">
           {orders.rows?.map(({ id, isComplete, createdAt, updatedAt }) => (
             <OneOrder
               key={id}

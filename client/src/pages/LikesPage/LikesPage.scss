@@ -1,8 +1,69 @@
-.container{
-    width: 80%;
+@import "../../index.scss";
 
-    .card{
-        margin: 15px;
-        padding: 20px 20px;
+.likes_container {
+  min-height: 650px;
+  font-family: "Montserrat", sans-serif;
+
+  a {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .title {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+
+    .red {
+      color: $red;
     }
+  }
+
+  .like-card {
+    box-shadow: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 290px;
+
+    .img-col {
+      position: relative;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 288px;
+      border-radius: 10px;
+    }
+
+    .product_info {
+      padding: 20px 10px !important;
+      position: relative;
+
+      .product-name {
+        color: $black;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .info-price,
+      .info-type,
+      .info-brand {
+        color: $red;
+      }
+
+      .info-btn {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.like-null {
+  height: 650px;
+
+  .img-empty {
+    width: 200px !important;
+  }
 }

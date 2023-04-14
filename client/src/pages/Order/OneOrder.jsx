@@ -1,27 +1,11 @@
-import { Rating } from "@material-ui/lab";
-import React, { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  Image,
-  InputGroup,
-  ListGroup,
-  Modal,
-  NavLink,
-  Row,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Context } from "../..";
 import { CreateReview } from "../../components/modals/CreateReview";
 import DetailsOrder from "../../components/modals/DetailOrder";
 import DetailsPostedReview from "../../components/modals/DetailPostedReview";
-import DetailsReview from "../../components/modals/DetailsReview";
 import { getOneOrderProducts } from "../../http/orderAPI";
-import { fetchOneProduct, fetchProduct } from "../../http/productAPI";
-import { createReviews } from "../../http/reviewsAPI";
-import { ORDERS_ROUTE, PRODUCT_ROUTE, SHOP_ROUTE } from "../../utils/consts";
+import { PRODUCT_ROUTE } from "../../utils/consts";
 
 const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
   const [modalReview, setShowReview] = useState(false);
@@ -48,7 +32,7 @@ const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
   const handleClosePostedReviews = () => setShowPostedReview(false);
   const handleShowPostedReviews = (review) => {
     setShowPostedReview(true);
-    setPickedReview(review)
+    setPickedReview(review);
     console.log(review);
   };
 
@@ -73,7 +57,6 @@ const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
 
   const [productId, setProductId] = useState();
 
-  // console.log(productInfo.products[0].description.review.length);
   return (
     <>
       <Card className="mt-1 p-0 one_order" key={id}>
@@ -81,7 +64,9 @@ const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
           <Row>
             <Col xs={6}>Номер заказа: {id}</Col>
             <Col xs={6} className="d-flex flex-row justify-content-end">
-              <a onClick={() => handleShowDetail()} className="detail_link">Детали заказа</a>
+              <a onClick={() => handleShowDetail()} className="detail_link">
+                Детали заказа
+              </a>
             </Col>
           </Row>
         </Card.Header>
@@ -94,7 +79,11 @@ const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
                   <div>
                     <img
                       className="img_item"
-                      src={process.env.REACT_APP_API_URL + "products/" + item.description.imgMain}
+                      src={
+                        process.env.REACT_APP_API_URL +
+                        "products/" +
+                        item.description.imgMain
+                      }
                       alt=""
                     />
                   </div>
@@ -123,18 +112,16 @@ const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
                           >
                             Оставить отзыв
                           </a>
-                        ) : (
-                          review.length != 0 ? 
+                        ) : review.length != 0 ? (
                           <a
-                          className="params_item_btn"
-                          onClick={() =>
-                            handleShowPostedReviews(item.description.review)
-                          }
-                        >
-                          Просмотреть отзыв
-                        </a>
-                          :
-
+                            className="params_item_btn"
+                            onClick={() =>
+                              handleShowPostedReviews(item.description.review)
+                            }
+                          >
+                            Просмотреть отзыв
+                          </a>
+                        ) : (
                           <div></div>
                         )}
                       </li>
@@ -173,8 +160,16 @@ const OneOrder = ({ id, complete, createdAt, updatedAt, reRender }) => {
         handleCloseReviews={handleCloseReviews}
       />
 
-      <DetailsOrder show={modalDetail} handleClose={handleCloseDetail} detail={productInfo.detail} />
-      <DetailsPostedReview show={modalPostedReview} handleClose={handleClosePostedReviews} review={pickedReview} />
+      <DetailsOrder
+        show={modalDetail}
+        handleClose={handleCloseDetail}
+        detail={productInfo.detail}
+      />
+      <DetailsPostedReview
+        show={modalPostedReview}
+        handleClose={handleClosePostedReviews}
+        review={pickedReview}
+      />
     </>
   );
 };

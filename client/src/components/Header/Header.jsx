@@ -124,7 +124,7 @@ const Header = observer(() => {
               </Col>
             </Row>
             <Row className="header_main">
-              <Container>
+              <Container fluid="md" className="container_bottom-header">
                 <Row>
                   <Col
                     className="header_logo"
@@ -319,7 +319,7 @@ const Header = observer(() => {
               </Col>
             </Row>
             <Row className="header_main">
-              <Container>
+              <Container fluid="md" className="container_bottom-header">
                 <Row>
                   <Col
                     className="header_logo"

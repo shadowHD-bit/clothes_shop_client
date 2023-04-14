@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
-import ProductItem from "./productItem/ProductItem";
+import { Col, Form, FormControl, Row } from "react-bootstrap";
 import { Context } from "..";
-import { BsSearch } from "react-icons/bs";
 import SortBar from "./Bar/SortBar";
+import ProductCard from "../templates/ProductCard/ProductCard";
 
 const ProductList = observer(
   ({ firstProductIndex, lastProductIndex, price, priceMin, totalProducts }) => {
@@ -80,7 +79,7 @@ const ProductList = observer(
 
         <Row className="d-flex">
           {filteredProduct.map((product) => (
-            <ProductItem key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} />
           ))}
         </Row>
       </div>

@@ -1,35 +1,80 @@
-import React from "react";
-import { useContext } from "react";
-import { Card, Button } from "react-bootstrap";
-import { BsCartPlus } from "react-icons/bs";
+import React, { useContext } from "react";
+import { Card, Button, Row, Col } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
+import { GiPriceTag } from "react-icons/gi";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { IoMdShirt } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { PRODUCT_ROUTE } from "../../utils/consts";
 import { Context } from "../..";
-import { addProductToBasket } from "../../http/productAPI";
 
 const LikesItem = ({ product }) => {
-  const { likes, basket, user } = useContext(Context);
+  const { likes } = useContext(Context);
 
   return (
-    <div className="container">
-      <Card className="d-flex flex-row justify-content-between align-items-center">
-        <div class="product-thumbnail">
-          <a href={`/product/${product.id}`}>
-            <img
-              src={process.env.REACT_APP_API_URL + "products/"+ product.imgMain}
-              alt=""
-              style={{ width: "100px" }}
-            />
-          </a>
-        </div>
-        <div className="product_name">{product.name}</div>
-        <div className="product_price">{product.price} РУБ</div>
-        <div className="btn-remove">
-          <a>
-            <GrClose onClick={() => likes.setDeleteItemLikes(product, true)} />
-          </a>
-        </div>
+    <>
+      <Card className="like-card">
+        <Row className="p-0 m-0">
+          <Col
+            xs={4}
+            className="p-0 m-0 img-col"
+            style={{
+              backgroundImage: `url(${
+                process.env.REACT_APP_API_URL + "products/" + product.imgMain
+              })`,
+            }}
+          ></Col>
+          <Col xs={8} className="p-1 m-0 product_info">
+            <Row>
+              <Row>
+                <p className="product-name">{product.name}</p>
+              </Row>
+              <Row className="info-price">
+                <Col xs={"auto"}>
+                  <GiPriceTag size={20} />
+                </Col>
+                <Col className="p-0" xs={"auto"}>
+                  {product.price} РУБ
+                </Col>
+              </Row>
+              <Row className="info-brand">
+                <Col xs={"auto"}>
+                  <BsFillPeopleFill size={20} />
+                </Col>
+                <Col className="p-0" xs={"auto"}>
+                  {product.brand.name}
+                </Col>
+              </Row>
+              <Row className="info-type">
+                <Col xs={"auto"}>
+                  <IoMdShirt size={20} />
+                </Col>
+                <Col className="p-0" xs={"auto"}>
+                  {product.type.name}
+                </Col>
+              </Row>
+            </Row>
+            <Row className="info-btn">
+              <Col>
+                <Row className="m-1">
+                  <Link to={PRODUCT_ROUTE + "/" + product.id} className="w-100">
+                    <Button variant="outline-success" className="w-100">Просмотр</Button>
+                  </Link>
+                </Row>
+                <Row className="m-1">
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => likes.setDeleteItemLikes(product, true)}
+                  >
+                    Удалить
+                  </Button>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Card>
-    </div>
+    </>
   );
 };
 

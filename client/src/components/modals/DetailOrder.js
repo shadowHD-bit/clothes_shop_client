@@ -15,40 +15,45 @@ const DetailsOrder = ({ show, handleClose, detail }) => {
           <Modal.Title>Информация о заказе №{detail?.orderId}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row>
+          <Row className="d-flex flex-column">
             <Row className="ml-1">
-              <h4 className="p-0">Основная информация о заказе</h4>
-              <Col>
-                <Row>Общая сумма заказа: {detail?.totalPrice} рублей</Row>
-                <Row>
+              <h4 className="p-0 m-0">Основная информация о заказе</h4>
+            </Row>
+            <Row>
+              <Col className="mt-1 mb-1 pl-4">
+                <p className="p-0 m-0">
+                  Общая сумма заказа: {detail?.totalPrice} рублей
+                </p>
+                <p className="p-0 m-0">
                   Доставка:{" "}
                   {!detail?.paymentDelivery ? "Бесплатная" : "Платная"}
-                </Row>
-                <Row>Скидка: {detail?.sale == 100 ? 0 : detail?.sale*100}%</Row>
-                <Row></Row>
-                <Row></Row>
+                </p>
+                <p className="p-0 m-0">
+                  Скидка: {detail?.sale == 100 ? 0 : detail?.sale * 100}%
+                </p>
               </Col>
             </Row>
             <hr />
 
             <Row className="ml-1">
-              <h4 className="p-0">Информация о заказчике</h4>
-
-              <Col>
-                <Row>Имя: {detail?.firstName}</Row>
-                <Row>Фамилия: {detail?.secondName}</Row>
-                <Row>Номер телефона: {detail?.numberPhone}</Row>
-                <Row>Страна: {detail?.country}</Row>
-                <Row>Город: {detail?.city}</Row>
-                <Row>Улица: {detail?.street}</Row>
-                <Row>Номер дома: {detail?.numberHome}</Row>
-                <Row>
+              <h4 className="p-0 m-0">Информация о заказчике</h4>
+            </Row>
+            <Row>
+              <Col className="mt-1 mb-1 pl-4">
+                <p className="p-0 m-0">Имя: {detail?.firstName}</p>
+                <p className="p-0 m-0">Фамилия: {detail?.secondName}</p>
+                <p className="p-0 m-0">Номер телефона: {detail?.numberPhone}</p>
+                <p className="p-0 m-0">Страна: {detail?.country}</p>
+                <p className="p-0 m-0">Город: {detail?.city}</p>
+                <p className="p-0 m-0">Улица: {detail?.street}</p>
+                <p className="p-0 m-0">Номер дома: {detail?.numberHome}</p>
+                <p className="p-0 m-0">
                   Номер квартиры:{" "}
                   {detail?.numberApartment == null
                     ? "-"
                     : detail?.numberApartment}
-                </Row>
-                <Row>Почтовый индекс: {detail?.zipCode}</Row>
+                </p>
+                <p className="p-0 m-0">Почтовый индекс: {detail?.zipCode}</p>
               </Col>
             </Row>
           </Row>
