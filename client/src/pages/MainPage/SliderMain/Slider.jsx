@@ -29,7 +29,7 @@ export default function Slider() {
   if (loading) {
     return (
       <>
-        <Container className="slider_container">
+        <Container className="slider_container"  fluid='md'>
           <Row>
             <Col>
             <Placeholder animation="glow" style={{height: '720px'}}>
@@ -43,7 +43,7 @@ export default function Slider() {
   } else {
     return (
       <>
-        <Container className="slider_container">
+        <Container className="slider_container"  fluid='md'>
           <Row>
             <Col>
               <Swiper

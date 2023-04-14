@@ -1,42 +1,18 @@
+@import "../../../index.scss";
 
-
-// .lightbox{
-//     background-image: url(../../../../public/img/header/bg_header.png);
-//     font-family: 'Montserrat', sans-serif;
-
-//     .row {
-//       margin-left: 15px;
-//       margin-right: 15px;
-//       margin-top: 0px;
-//       padding-top: 20px;
-//       padding-bottom: 20px;
-
-//       @media (max-width:764px){
-//         margin-left: 5px;
-//         margin-right: 5px;
-//         padding-top: 5px;
-//         padding-bottom: 5px;
-//       }
-
-//     }
-
-// }
-
-@import '../../../index.scss';
-
-.catalog_container{
-  font-family: 'Montserrat', sans-serif;
+.catalog_container {
+  font-family: "Montserrat", sans-serif;
   margin-top: 50px;
-  .catalog_title{
-    font-size: 26px;
+  .catalog_title {
+    font-size: 25px;
     font-weight: bold;
   }
 
-  a{
+  a {
     text-decoration: none;
   }
 
-  .card_product_main{
+  .card_product_main {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -44,37 +20,41 @@
     height: 200px;
     padding: 0 !important;
     cursor: pointer;
-    transition: 1s;
-    border-radius: 30px;
+    transition: 0.5 s ease all;
+    border-radius: 10px;
+    margin: 5px 0 !important;
+    box-shadow: none;
 
-    &:hover{
-      transition: 1s;
-      .card_product_main_body{
+    &:hover {
+      transition: 0.5 s ease all;
+      .card_product_main_body {
+        transition: 0.5 s ease all;
         background-color: rgba(0, 0, 0, 0.747);
       }
     }
 
-    .card_product_main_body{
+    .card_product_main_body {
       background-color: rgba(0, 0, 0, 0.61);
-      border-radius: 30px;
+      border-radius: 10px;
       width: 100%;
       height: 100%;
       color: white;
       font-weight: bold;
       margin: 0 !important;
       display: flex;
+      transition: 0.5 s ease all;
       align-items: flex-end;
-      font-family: 'Montserrat', sans-serif;  
+      font-family: "Montserrat", sans-serif;
     }
   }
 
-  .btn_other_product{
+  .btn_other_product {
     border-radius: 20px;
     background-color: $red;
     border: none;
     padding: 5px 20px;
 
-    &:hover{
+    &:hover {
       background-color: $white_red;
     }
   }

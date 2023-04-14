@@ -5,30 +5,37 @@
   margin-top: 60px;
   
   .catalog_title{
-    font-size: 26px;
+    font-size: 25px;
     font-weight: bold;
+    color: black;
+
+    .red{
+      color: $red;
+    }
   }
 
   .placeholder{
-    height: 200px;
+    height: 150px;
     padding: 0 !important;
     cursor: pointer;
     transition: 1s;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: none;
   }
 
   .brand_card {
     background-position: center;
-    background-size: cover;
     background-repeat: no-repeat;
+    background-size: contain;
     position: relative;
-    height: 200px;
+    height: 150px;
     padding: 0 !important;
     cursor: pointer;
     transition: 1s;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: none;
+    border: 1px solid $black;
+
 
     &:hover{
       transition: 1s;
@@ -39,8 +46,7 @@
   }
 
   .card_brand_main_body{
-    background-color: rgba(0, 0, 0, 0.61);
-    border-radius: 30px;
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     color: white;
@@ -68,7 +74,7 @@
 }
 
 .mySwiperBrand > .swiper-wrapper{
-    height: 250px;
+    height: 190px;
 }
 
 .swiper-pagination-bullet-active{

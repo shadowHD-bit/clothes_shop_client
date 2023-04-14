@@ -21,7 +21,7 @@ const Lightbox = () => {
   useEffect(() => {
     fetchTypes().then((data) => {
       setType(shuffle(data.rows));
-      setLoading(false)
+      setLoading(false);
     });
   }, []);
 
@@ -51,32 +51,53 @@ const Lightbox = () => {
           <Row>
             <Col xs={12} md={6} xl={4}>
               <Placeholder animation="glow" style={{ height: "200px" }}>
-                <Placeholder style={{ height: "200px", borderRadius: '30px' }} xs={12} />
+                <Placeholder
+                  style={{ height: "200px", borderRadius: "30px" }}
+                  xs={12}
+                />
               </Placeholder>
             </Col>
             <Col xs={12} md={6} xl={4}>
               <Placeholder animation="glow" style={{ height: "200px" }}>
-                <Placeholder style={{ height: "200px", borderRadius: '30px' }} xs={12} />
+                <Placeholder
+                  style={{ height: "200px", borderRadius: "30px" }}
+                  xs={12}
+                />
               </Placeholder>
             </Col>
             <Col xs={12} md={6} xl={4}>
               <Placeholder animation="glow" style={{ height: "200px" }}>
-                <Placeholder style={{ height: "200px", borderRadius: '30px' }} xs={12} />
+                <Placeholder
+                  style={{ height: "200px", borderRadius: "30px" }}
+                  xs={12}
+                />
               </Placeholder>
             </Col>
             <Col xs={12} md={6} xl={4}>
               <Placeholder animation="glow" style={{ height: "200px" }}>
-                <Placeholder className="mt-3" style={{ height: "200px", borderRadius: '30px' }} xs={12} />
+                <Placeholder
+                  className="mt-3"
+                  style={{ height: "200px", borderRadius: "30px" }}
+                  xs={12}
+                />
               </Placeholder>
             </Col>
             <Col xs={12} md={6} xl={4}>
               <Placeholder animation="glow" style={{ height: "200px" }}>
-                <Placeholder className="mt-3" style={{ height: "200px", borderRadius: '30px' }} xs={12} />
+                <Placeholder
+                  className="mt-3"
+                  style={{ height: "200px", borderRadius: "30px" }}
+                  xs={12}
+                />
               </Placeholder>
             </Col>
             <Col xs={12} md={6} xl={4}>
               <Placeholder animation="glow" style={{ height: "200px" }}>
-                <Placeholder className="mt-3" style={{ height: "200px", borderRadius: '30px' }} xs={12} />
+                <Placeholder
+                  className="mt-3"
+                  style={{ height: "200px", borderRadius: "30px" }}
+                  xs={12}
+                />
               </Placeholder>
             </Col>
           </Row>
@@ -93,10 +114,13 @@ const Lightbox = () => {
   } else {
     return (
       <>
-        <Container className="catalog_container">
+        <Container className="catalog_container" fluid="md">
           <Row>
             <Col>
-              <p className="catalog_title">Выбери свой стиль...</p>
+              <p className="catalog_title">
+                Выбери свой{" "}
+                <span className="red"> стиль </span>
+              </p>
             </Col>
           </Row>
           <Row>
@@ -110,7 +134,7 @@ const Lightbox = () => {
                     className="card_product_main"
                     style={{
                       backgroundImage: `url(${
-                        process.env.REACT_APP_API_URL + 'types/' + elem.img
+                        process.env.REACT_APP_API_URL + "types/" + elem.img
                       })`,
                     }}
                   >
@@ -122,7 +146,7 @@ const Lightbox = () => {
               </Col>
             ))}
           </Row>
-          <Row className="d-flex w-100 justify-content-center">
+          <Row className="d-flex w-100 justify-content-center mt-4">
             <Col className="d-flex w-100 justify-content-center">
               <Button href={PRODUCT_ROUTE} className="btn_other_product">
                 Другие товары

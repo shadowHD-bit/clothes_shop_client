@@ -656,10 +656,10 @@ const SimpleProduct = observer(() => {
                     {reviews?.length != 0 ? (
                       <p className="quest_about_text text-center">
                         Рейтинг составляет{" "}
-                        {product?.review
+                        {reviews
                           ?.map((i) => i.rate)
-                          .reduce((a, b) => a + b)}{" "}
-                        балл(-а) и основан на {reviews?.length} отывах(-е)...
+                          .reduce((a, b) => a + b)/(reviews?.length)}{" "}
+                        балл(-а, -ов) и основан на {reviews?.length} отывах(-е)...
                       </p>
                     ) : (
                       <p className="quest_about_text text-center">

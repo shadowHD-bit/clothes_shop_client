@@ -21,7 +21,7 @@ function Brands() {
   useEffect(() => {
     fetchBrands().then((data) => {
       setBrands(data.rows);
-      setLoading(false)
+      setLoading(false);
     });
   }, []);
 
@@ -31,7 +31,11 @@ function Brands() {
         <Container fluid className="brands_container_main">
           <Row className="d-flex w-100 justify-content-center">
             <Col className="d-flex w-100 justify-content-center">
-              <p className="catalog_title">Выбери свой бренд...</p>
+              <p className="catalog_title">
+                {" "}
+                Выбери свой
+                <span className="red">бренд </span>
+              </p>
             </Col>
           </Row>
           <Row>
@@ -129,7 +133,10 @@ function Brands() {
         <Container fluid className="brands_container_main">
           <Row className="d-flex w-100 justify-content-center">
             <Col className="d-flex w-100 justify-content-center">
-              <p className="catalog_title">Выбери свой бренд...</p>
+              <p className="catalog_title">
+                Выбери свой
+                <span className="red"> бренд </span>
+              </p>
             </Col>
           </Row>
           <Row>
@@ -160,13 +167,11 @@ function Brands() {
                     className="brand_card"
                     style={{
                       backgroundImage: `url(${
-                        process.env.REACT_APP_API_URL + 'brands/' + elem.img
+                        process.env.REACT_APP_API_URL + "brands/" + elem.img
                       })`,
                     }}
                   >
-                    <Card.Body className="card_brand_main_body">
-                      {elem.name}
-                    </Card.Body>
+                    <Card.Body className="card_brand_main_body"></Card.Body>
                   </Card>
                 </SwiperSlide>
               ))}

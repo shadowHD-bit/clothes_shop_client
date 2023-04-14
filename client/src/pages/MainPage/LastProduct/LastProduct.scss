@@ -1,0 +1,102 @@
+@import "../../../index.scss";
+
+.popular_product {
+  margin: 30px 0px !important;
+  font-family: "Montserrat", sans-serif;
+
+  .popular_title {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+
+    .red {
+      color: $red;
+    }
+  }
+
+  .popular_product_card {
+    margin: 10px 0px;
+    box-shadow: none;
+    border-radius: 8px;
+    border: 1px solid $black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .popular_product_card-body {
+      transition: 0.5s ease all;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: stretch;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+
+      .product-param {
+        color: white;
+        margin: 10px 10px !important;
+
+        .product-type,
+        .product-brand {
+          display: flex;
+          justify-content: flex-end;
+          visibility: hidden;
+          transform: translateX(300px);
+
+          .text {
+            margin-right: 7px !important;
+          }
+        }
+      }
+
+      .product-name {
+        color: white;
+        visibility: hidden;
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0s;
+        display: flex;
+        justify-content: flex-start;
+        align-items: end;
+        text-align: end;
+        position: absolute;
+        bottom: 0;
+        p {
+          transform: translateX(-450px);
+        }
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.514);
+        transition: 0.5s ease all;
+
+        .product-name {
+          visibility: visible;
+          transition: 0s;
+
+          p {
+            transition: 0.5s ease all;
+            transform: translateX(0px);
+          }
+        }
+
+        .product-param {
+          .product-type,
+          .product-brand {
+            visibility: visible;
+            transition: 0.5s ease all;
+            transform: translateX(-0px);
+          }
+        }
+      }
+    }
+  }
+}

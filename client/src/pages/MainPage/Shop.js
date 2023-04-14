@@ -1,11 +1,13 @@
 import MainSlider from "./SliderMain/Slider";
-import PopularSlider from "./SliderPopularProduct/SliderPopularSection";
 import LightBox from "./lightbox/Lightbox";
-import NewProduct from "./newProduct/newProduct";
-import News from "./newsSlider/news";
 import Brands from "./brands/Brands";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
+import PopularProduct from "./PopularProduct/PopularProduct";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import LastProduct from "./LastProduct/LastProduct";
 
 const mainPage = observer(() => {
   useEffect(() => {
@@ -18,12 +20,10 @@ const mainPage = observer(() => {
     <div className="mainPage">
       <MainSlider />
       <LightBox />
-      {/*
-            <PopularSlider />
-            <NewProduct />
-            <News />
-            */}
+      <PopularProduct />
+      <LastProduct />
       <Brands />
+      <NavigationBlock />
     </div>
   );
 });

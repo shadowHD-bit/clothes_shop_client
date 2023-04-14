@@ -4,6 +4,7 @@ import "./RefundPage.scss";
 import { Container, Row } from "react-bootstrap";
 import { refundInfo } from "../../utils/refundInfo";
 import { Link } from "react-router-dom";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
 
 export default function RefundPage() {
   return (
@@ -56,6 +57,7 @@ export default function RefundPage() {
             </p>
           </Row>
         </Container>
+        <NavigationBlock />
       </Container>
     </>
   );
