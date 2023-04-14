@@ -22,8 +22,8 @@ const mainPage = observer(() => {
       <LightBox />
       <PopularProduct />
       <LastProduct />
-      <Brands />
       <NavigationBlock />
+      <Brands />
     </div>
   );
 });

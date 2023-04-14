@@ -1,12 +1,14 @@
-.notification_container{
-    min-height: 650px;
-    font-family: 'Montserrat', sans-serif;
+@import "../../index.scss";
 
+.notification_container {
+  min-height: 650px;
+  font-family: "Montserrat", sans-serif;
 
-    .notification_card{
-        border-radius: 30px;
-        padding: 5px !important;
-        margin-bottom: 10px;
-    }
-
+  .notification_card {
+    border-radius: 10px;
+    padding: 5px !important;
+    margin-bottom: 10px;
+    border: 1px solid $black;
+    box-shadow: none;
+  }
 }
