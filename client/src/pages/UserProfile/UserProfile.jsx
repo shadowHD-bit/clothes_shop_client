@@ -399,7 +399,7 @@ console.log(user);
                 className="test_avatar"
                 style={{
                   backgroundImage: `url(${
-                    user.userProf.isVkAccount || user.userProf.isGoogleAccount
+                    user.userProf.avatarFlag
                       ? user.userProf.avatar
                       : process.env.REACT_APP_API_URL +
                         "avatars/" +

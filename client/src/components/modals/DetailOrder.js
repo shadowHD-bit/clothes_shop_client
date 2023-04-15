@@ -29,7 +29,7 @@ const DetailsOrder = ({ show, handleClose, detail }) => {
                   {!detail?.paymentDelivery ? "Бесплатная" : "Платная"}
                 </p>
                 <p className="p-0 m-0">
-                  Скидка: {detail?.sale == 100 ? 0 : detail?.sale * 100}%
+                  Скидка: {detail?.sale == 100 ? 0 : 100 - detail?.sale * 100}%
                 </p>
               </Col>
             </Row>

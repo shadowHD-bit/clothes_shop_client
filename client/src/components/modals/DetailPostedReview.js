@@ -41,7 +41,17 @@ const DetailsPostedReview = ({ show, handleClose, review }) => {
           </Row>
           <Row>
             <Col xs={4}>
-              {review[0]?.imgFirst == "not img" ? (
+              {review[0]?.imgFirst == null ? (
+                "Изображение не прикреплено!"
+              ) : (
+                <img
+                  width={"100%"}
+                  src={process.env.REACT_APP_API_URL + 'reviews/' + review[0]?.imgFirst}
+                />
+              )}
+            </Col>
+            <Col xs={4}>
+              {review[0]?.imgSecond == null ? (
                 "Изображение не прикреплено!"
               ) : (
                 <img
@@ -51,22 +61,12 @@ const DetailsPostedReview = ({ show, handleClose, review }) => {
               )}
             </Col>
             <Col xs={4}>
-              {review[0]?.imgFirst == "not img" ? (
+              {review[0]?.imgThird == null ? (
                 "Изображение не прикреплено!"
               ) : (
                 <img
                   width={"100%"}
                   src={process.env.REACT_APP_API_URL + 'reviews/' + review[0]?.imgThird}
-                />
-              )}
-            </Col>
-            <Col xs={4}>
-              {review[0]?.imgFirst == "not img" ? (
-                "Изображение не прикреплено!"
-              ) : (
-                <img
-                  width={"100%"}
-                  src={process.env.REACT_APP_API_URL + 'reviews/' + review[0]?.imgFirst}
                 />
               )}
             </Col>
