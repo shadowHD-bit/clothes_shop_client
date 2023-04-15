@@ -8,6 +8,7 @@ import {
   LIKES_ROUTER,
   LOCATIONPLACES_ROUTE,
   LOGIN_ROUTE,
+  NOTIFICATION_ROUTE,
   ORDERS_ROUTE,
   PRODUCT_ROUTE,
   QUESTION_ROUTE,
@@ -43,41 +44,11 @@ const Sidebar = ({ show, handleClose, isAuth, isAdmin, basket, likes }) => {
               Главная
             </Button>
           </Link>
-          <Dropdown className="off_navigation_dropdown">
-            <Dropdown.Toggle
-              variant="none"
-              className="off_navigation_dropdown-toggle"
-              drop={"start"}
-            >
+          <Link to={PRODUCT_ROUTE} reloadDocument>
+            <Button variant="none" className="off_navigation_btn" type="button">
               Товары
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="off_navigation_dropdown-menu">
-              <Dropdown.Item
-                className="off_navigation_dropdown-item"
-                href={PRODUCT_ROUTE}
-              >
-                Все товары
-              </Dropdown.Item>
-              <Dropdown.Item
-                className="off_navigation_dropdown-item"
-                href="#/action-1"
-              >
-                Мужская одежда
-              </Dropdown.Item>
-              <Dropdown.Item
-                className="off_navigation_dropdown-item"
-                href="#/action-2"
-              >
-                Женская одежда
-              </Dropdown.Item>
-              <Dropdown.Item
-                className="off_navigation_dropdown-item"
-                href="#/action-3"
-              >
-                Обувь
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+            </Button>
+          </Link>
           <Dropdown className="off_navigation_dropdown">
             <Dropdown.Toggle
               variant="none"
@@ -91,12 +62,6 @@ const Sidebar = ({ show, handleClose, isAuth, isAdmin, basket, likes }) => {
                 href={ABOUT_ROUTE}
               >
                 О нас
-              </Dropdown.Item>
-              <Dropdown.Item
-                className="off_navigation_dropdown-item"
-                href="#/action-2"
-              >
-                Контакты
               </Dropdown.Item>
               <Dropdown.Item
                 className="off_navigation_dropdown-item"
@@ -116,18 +81,34 @@ const Sidebar = ({ show, handleClose, isAuth, isAdmin, basket, likes }) => {
               >
                 Вопросы и ответы
               </Dropdown.Item>
-              {isAuth && isAdmin == true ? (
-                <Dropdown.Item
-                  className="off_navigation_dropdown-item"
-                  href={ADMIN_ROUTE}
-                >
-                  Админка
-                </Dropdown.Item>
-              ) : (
-                <div></div>
-              )}
+              <Dropdown.Item
+                className="off_navigation_dropdown-item"
+                href={QUESTION_ROUTE}
+              >
+                Доставка
+              </Dropdown.Item>
+              <Dropdown.Item
+                className="off_navigation_dropdown-item"
+                href={QUESTION_ROUTE}
+              >
+                Возврат
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+
+          {isAuth && isAdmin == true ? (
+            <Link to={ADMIN_ROUTE} reloadDocument>
+              <Button
+                variant="none"
+                className="off_navigation_btn-admin"
+                type="button"
+              >
+                АДМИН-ПАНЕЛЬ
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
 
           {isAuth ? (
             <Button
@@ -182,9 +163,19 @@ const Sidebar = ({ show, handleClose, isAuth, isAdmin, basket, likes }) => {
               href={ORDERS_ROUTE}
             >
               Заказы{" "}
-              {/* <Badge pill bg="success" className="basket_badge">
-                {basket.Price} РУБ
-              </Badge>{" "} */}
+            </Button>
+          ) : (
+            <div></div>
+          )}
+
+          {isAuth ? (
+            <Button
+              variant="none"
+              className="off_navigation_btn_simple"
+              type="button"
+              href={NOTIFICATION_ROUTE}
+            >
+              Уведомления{" "}
             </Button>
           ) : (
             <div></div>

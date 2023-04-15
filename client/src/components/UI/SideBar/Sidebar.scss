@@ -22,7 +22,7 @@
     .off_navigation_btn {
       border: 1px solid $white_red;
       color: $white_red;
-      border-radius: 30px;
+      border-radius: 10px;
       width: 100%;
       margin-bottom: 12px;
       background-color: white;
@@ -33,10 +33,29 @@
       }
     }
 
+    .off_navigation_btn-admin{
+        border: 1px solid $red;
+        color: $red;
+        border-radius: 10px;
+        width: auto;
+        margin-bottom: 12px;
+        background-color: white;
+        font-weight: bold;
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        right: 20px;
+  
+        &:hover {
+          background-color: $red;
+          color: white;
+        }
+    }
+
     .off_navigation_btn_logout {
       border: 1px solid $red;
       color: $red;
-      border-radius: 30px;
+      border-radius: 10px;
       width: 100%;
       margin-bottom: 12px;
       background-color: white;
@@ -50,7 +69,7 @@
     .off_navigation_btn_simple {
       border: 1px solid rgb(39, 110, 39);
       color: rgb(39, 110, 39);
-      border-radius: 30px;
+      border-radius: 10px;
       width: 100%;
       margin-bottom: 12px;
       background-color: white;
@@ -64,7 +83,7 @@
     .off_navigation_btn_login {
       border: 1px solid rgb(57, 151, 57);
       color: rgb(57, 151, 57);
-      border-radius: 30px;
+      border-radius: 10px;
       width: 100%;
       margin-bottom: 12px;
       background-color: white;
@@ -79,7 +98,7 @@
       .off_navigation_dropdown-toggle {
         border: 1px solid $white_red;
         color: $white_red;
-        border-radius: 30px;
+        border-radius: 10px;
         width: 100%;
         margin-bottom: 12px;
         background-color: white;
@@ -107,6 +126,13 @@
           align-items: center;
           color: $white_red;
           padding: 5px 0px;
+          transition: .2s ease all;
+
+          &:hover{
+            transition: .2s ease all;
+            background-color: $white_red;
+            color: white;
+          }
 
           &:first-child {
             border-top-left-radius: 10px;

@@ -2,10 +2,8 @@
 
 .profile {
   font-family: "Montserrat", sans-serif;
-  -webkit-box-shadow: -2px 1px 46px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: -2px 1px 46px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: -2px 1px 46px 0px rgba(34, 60, 80, 0.2);
-  border-radius: 30px !important;
+  border-radius: 10px !important;
+  border: 1px solid $black;
 
   .relative{
     position: relative;

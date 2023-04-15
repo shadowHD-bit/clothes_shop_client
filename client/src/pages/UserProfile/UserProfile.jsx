@@ -3,63 +3,33 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   Badge,
   Button,
-  Card,
   Col,
   Container,
-  Form,
-  Modal,
   OverlayTrigger,
   Row,
   Tooltip,
 } from "react-bootstrap";
 import { Context } from "../..";
-import {
-  fetchOrdersUser,
-  getAllProductsOneUserOrders,
-  getOneOrderProducts,
-} from "../../http/orderAPI";
-import {
-  getData,
-  updateUserData,
-  updateUserDataAvatar,
-} from "../../http/userAPI";
+import { getData, updateUserData } from "../../http/userAPI";
+import { BsBootstrap, BsGoogle, BsWindowSidebar } from "react-icons/bs";
+import NavigationBlockProfile from "../../templates/NavigationBlockProfile/NavigationBlockProfile";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
+import HistoryProduct from "../../templates/HistoryProduct/HistoryProduct";
+import useModal from "../../hooks/useModal";
+import ChangeAvatarModal from "../../templates/Modal/ProfilePage/ChangeAvatarModal/ChangeAvatarModal";
+import useRerender from "../../hooks/useRerender";
 import "./UserProfile.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from "swiper";
-import { getHistoryView } from "../../http/historyAPI";
-import { Link } from "react-router-dom";
-import { PRODUCT_ROUTE } from "../../utils/consts";
-import {
-  BsBootstrap,
-  BsCircle,
-  BsFillBootstrapFill,
-  BsGoogle,
-  BsWindowSidebar,
-} from "react-icons/bs";
-import { MdWebAsset } from "react-icons/md";
 
 const UserProfile = observer(() => {
   const [changeData, setChangeData] = useState(false);
-  const [load, setload] = useState(false);
-
   const { user } = useContext(Context);
+  const { showModal, handleOpenModal, handleCloseModal } = useModal();
+  const { render, reRender } = useRerender();
 
   const [name, setName] = useState("");
   const [family, setFamily] = useState("");
   const [date_birthday, setDate_birthday] = useState("");
   const [numberPhone, setNumberPhone] = useState("");
-  const [showModalPhoto, setShowModalPhoto] = useState(false);
-
-  const [file, setFile] = useState(null);
-  const [history, setHistory] = useState([]);
-
-  const handlerModalPhotoShow = () => setShowModalPhoto(true);
-  const handlerModalPhotoSClose = () => setShowModalPhoto(false);
-
-  const selectFile = (e) => {
-    setFile(e.target.files[0]);
-  };
-
 
   useEffect(() => {
     setName(user.userProf.name);
@@ -71,28 +41,17 @@ const UserProfile = observer(() => {
   }, []);
 
   useEffect(() => {
-    if (user.isAuth && user.user.id != undefined) {
-      getHistoryView(user.user.id).then((data) => {
-        setHistory(data);
-      });
-    }
-  }, []);
-
-  const [rerender, setRerender] = useState(false);
-
-  useEffect(() => {
     getData(user.user.id).then((data) => {
-      user.setUserProf({...data, avatarFlag: data.avatar.toString().substring(0, 4) == "http"});
+      user.setUserProf({
+        ...data,
+        avatarFlag: data.avatar.toString().substring(0, 4) == "http",
+      });
       setName(user.userProf.firstName);
       setFamily(user.userProf.secondName);
       setDate_birthday(user.userProf.dateBirthday);
       setNumberPhone(user.userProf.numberPhone);
     });
-  }, [rerender]);
-
-  const reRender = () => {
-    setRerender(!rerender);
-  };
+  }, [render]);
 
   const changeDataUser = () => {
     const formData = new FormData();
@@ -106,22 +65,14 @@ const UserProfile = observer(() => {
     });
   };
 
-  const changeDataUserAvatar = () => {
-    const formData = new FormData();
-    formData.append("avatar", file);
-    updateUserDataAvatar(user.userProf.id, formData).then((data) => {
-      setChangeData(false);
-      if (showModalPhoto) {
-        handlerModalPhotoSClose();
-      }
-      reRender();
-    });
-  };
-  //user.userProf?.avatar.substring(0, 3) == 'http' ? user.userProf.avatar : process.env.REACT_APP_API_URL+ 'avatars/' + user.userProf.avatar
-console.log(user);
   return (
-    <Container fluid>
-      <div className="container rounded bg-white mt-5 mb-5 profile">
+    <Container fluid="md">
+      <Row>
+        <p className="title">
+          <span className="red">Личный </span> кабинет
+        </p>
+      </Row>
+      <div className="container rounded bg-white profile">
         <div className="row">
           <div className="col-md-4 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5 relative">
@@ -192,7 +143,7 @@ console.log(user);
               <span className="text-black-50"></span>
               <Button
                 className="change_photo_btn mt-1"
-                onClick={() => handlerModalPhotoShow()}
+                onClick={() => handleOpenModal()}
               >
                 Изменить аватар
               </Button>
@@ -200,9 +151,6 @@ console.log(user);
           </div>
           <div className="col-md-8">
             <div className="p-3 py-5">
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="text-right">Информация о профиле</h4>
-              </div>
               <div className="row mt-2">
                 <div className="col-md-6">
                   <label className="labels">Имя</label>
@@ -319,111 +267,17 @@ console.log(user);
         </div>
       </div>
 
-      {/* <div className="container rounded bg-white mt-5 mb-5 profile">
-        <Row>
-          <Col xs={12}>
-            <div className="d-flex justify-content-center align-items-center mb-3 text-center">
-              <h4 className="text-right">Информация о доставке</h4>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}></Col>
-          <Col xs={12}></Col>
-        </Row>
-      </div> */}
+      <NavigationBlockProfile />
+      <HistoryProduct />
+      <NavigationBlock />
 
-      <div className="container rounded bg-white mt-5 mb-5 profile">
-        <Row>
-          <Col>
-            <h4 className="text-center mt-3">Вы недавно просматривали</h4>
-          </Col>
-        </Row>
-        <Row>
-          <Swiper
-            breakpoints={{
-              576: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              988: {
-                slidesPerView: 4,
-              },
-            }}
-            spaceBetween={30}
-            freeMode={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[FreeMode, Pagination]}
-            className="mySwiperHistory"
-          >
-            {history?.map((item) => (
-              <SwiperSlide key={item?.id}>
-                <Card className="card_history">
-                  <Card.Img
-                    className="card_img"
-                    variant="top"
-                    src={
-                      process.env.REACT_APP_API_URL +
-                      "products/" +
-                      item?.product.imgMain
-                    }
-                  />
-                  <Card.Body className="card_body">
-                    <Card.Title className="card_title">
-                      <Link to={PRODUCT_ROUTE + "/" + item?.product.id}>
-                        {item?.product.name}
-                      </Link>
-                    </Card.Title>
-                  </Card.Body>
-                </Card>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Row>
-      </div>
-
-      <Modal show={showModalPhoto} onHide={handlerModalPhotoSClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Изменить аватар
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Row className="flex justify-content-center">
-            {file === null ? (
-              <div
-                className="test_avatar"
-                style={{
-                  backgroundImage: `url(${
-                    user.userProf.avatarFlag
-                      ? user.userProf.avatar
-                      : process.env.REACT_APP_API_URL +
-                        "avatars/" +
-                        user.userProf.avatar
-                  })`,
-                }}
-              ></div>
-            ) : (
-              <div
-                className="test_avatar"
-                style={{
-                  backgroundImage: `url(${URL.createObjectURL(file)})`,
-                }}
-              ></div>
-            )}
-          </Row>
-          <Row>
-            <Form.Control className="mt-3" type="file" onChange={selectFile} />
-          </Row>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => changeDataUserAvatar()}>Изменить</Button>
-        </Modal.Footer>
-      </Modal>
+      {showModal && (
+        <ChangeAvatarModal
+          show={showModal}
+          handleClose={handleCloseModal}
+          reRender={reRender}
+        />
+      )}
     </Container>
   );
 });

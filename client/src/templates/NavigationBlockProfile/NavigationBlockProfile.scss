@@ -1,0 +1,39 @@
+@import "../../index.scss";
+
+.navigation_block {
+  padding: 30px 0px;
+  background-color: white;
+
+  .navigation_block_title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .red {
+    color: $red;
+  }
+
+  .navigation_card {
+    box-shadow: none;
+    border: 1px solid $black;
+    border-radius: 5px;
+    transition: 0.5s ease all;
+    color: $black;
+    cursor: pointer;
+    margin: 10px 0px;
+    padding: 20px 20px !important;
+
+
+    &:hover {
+      transition: 0.5s ease all;
+      border: 1px solid $red;
+      color: $red;
+    }
+  }
+}
