@@ -9,7 +9,7 @@ import {
   deleteNotification,
   fetchNotificationOneUser,
 } from "../../http/notificationAPI";
-import Loader from "../../component/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 import "./NotificationPage.scss";
 

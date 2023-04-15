@@ -105,7 +105,7 @@ export default function Footer() {
           <Row className="copyright">
             <Col className="p-0 m-0">
               <p className="copyright_text">
-                Copyright © 2022. All rights recerved | This app is made by
+                Copyright © 2021-2023. All rights recerved | This app is made by
                 Alexandr Krivikov
               </p>
             </Col>

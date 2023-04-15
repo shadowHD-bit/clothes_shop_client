@@ -8,8 +8,8 @@ import { Context } from "../../..";
 import { useForm } from "react-hook-form";
 import { initGoogleAuth } from "../../../utils/configs/googleAuthConfig";
 
-import AuthGoogleButton from "../../../component/AuthGoogleButton/AuthGoogleButton";
-import AuthVkButton from "../../../component/AuthVkButton/AuthVkButton";
+import AuthGoogleButton from "../../../components/AuthGoogleButton/AuthGoogleButton";
+import AuthVkButton from "../../../components/AuthVkButton/AuthVkButton";
 import "./AuthForm.scss";
 
 export default function AuthForm() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { bannedUserApi } from "../../http/userAPI";
-import ToastError from "../../component/Toast/Toast";
+import ToastError from "../Toast/Toast";
 
 export default function BannedUser({
   show,

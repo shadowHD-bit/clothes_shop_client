@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { changeRoleUser } from "../../http/userAPI";
-import ToastError from "../../component/Toast/Toast";
+import ToastError from "../Toast/Toast";
 
 export default function ChangeRole({
   show,

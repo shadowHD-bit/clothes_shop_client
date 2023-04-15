@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import ToastError from "../../component/Toast/Toast";
+import ToastError from "../Toast/Toast";
 import {
   fetchDeleteProduct,
   updateDisplayProduct,

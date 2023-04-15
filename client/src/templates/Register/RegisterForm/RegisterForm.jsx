@@ -12,8 +12,8 @@ import { Context } from "../../..";
 import { registration } from "../../../http/userAPI";
 
 import "./RegisterForm.scss";
-import AuthGoogleButton from "../../../component/AuthGoogleButton/AuthGoogleButton";
-import AuthVkButton from "../../../component/AuthVkButton/AuthVkButton";
+import AuthGoogleButton from "../../../components/AuthGoogleButton/AuthGoogleButton";
+import AuthVkButton from "../../../components/AuthVkButton/AuthVkButton";
 
 export default function RegisterForm() {
   const { user } = useContext(Context);
