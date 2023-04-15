@@ -1,5 +1,20 @@
 @import "../../index.scss";
 
+.empty-page{
+  min-height: 650px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+
+  .red {
+    color: $red;
+  }
+}
+
 .likes_container {
   min-height: 650px;
   font-family: "Montserrat", sans-serif;
@@ -8,16 +23,6 @@
     text-decoration: none;
     padding: 0;
     margin: 0;
-  }
-
-  .title {
-    font-size: 25px;
-    font-weight: bold;
-    color: black;
-
-    .red {
-      color: $red;
-    }
   }
 
   .like-card {

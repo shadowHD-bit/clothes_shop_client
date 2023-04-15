@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
-import { Button, Col, Form, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import OneItemInBasket from "./OneItemBasket";
 import { Context } from "../..";
 import "./BasketCard.scss";
@@ -155,34 +155,43 @@ const BasketCard = observer(() => {
 
   if (basket.length == 0) {
     return (
-      <div className="d-flex flex-column align-items-center mt-5">
-        <Image
-          src={process.env.PUBLIC_URL + "/img/basket/basketEmpty.png"}
-          width="200"
-        />
-        <div
-          className="text-center mt-5"
-          style={{ fontSize: 28, marginBottom: 200 }}
-        >
-          <b>Ваша корзина покупок сейчас пустая...</b>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <p className="title">
+              <span className="red"> Корзина </span> покупок
+            </p>
+          </Col>
+        </Row>
+        <Row className="d-flex justify-content-center empty-page">
+          <Col
+            xs={12}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <Image
+              style={{ width: "300px" }}
+              src={process.env.PUBLIC_URL + "/img/productcard/tea-time.png"}
+            />
+          </Col>
+          <Col className="text-center" style={{ fontSize: 28 }} xs={12}>
+            Ваша корзина покупок сейчас пустая!
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
   return (
     <>
-      <div class="entry-header-area">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="entry-header">
-                <h1 class="entry-title mt-3 mb-3">Корзина покупок</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <p className="title">
+              <span className="red"> Корзина </span> покупок
+            </p>
+          </Col>
+        </Row>
+      </Container>
 
       <div class="cart-main-area">
         <div class="container">

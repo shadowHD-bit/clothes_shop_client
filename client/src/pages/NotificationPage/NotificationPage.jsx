@@ -82,7 +82,7 @@ const NotificationPage = () => {
             >
               <Image
                 src={process.env.PUBLIC_URL + "/img/productcard/tea-time.png"}
-                width="200"
+                style={{width: '300px'}}
               />
             </Col>
             <Col className="text-center mt-5" style={{ fontSize: 28 }} xs={12}>

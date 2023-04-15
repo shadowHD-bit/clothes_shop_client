@@ -12,22 +12,26 @@ const LikesPage = observer(() => {
 
   if (likes.Likes.length == 0) {
     return (
-      <Container
-        fluid={"md"}
-        className="d-flex flex-column align-items-center mt-5 like-null"
-      >
+      <Container>
         <Row>
-          <Image
-            src={process.env.PUBLIC_URL + "/img/basket/basketEmpty.png"}
-            className="img-empty"
-          />
+          <Col>
+            <p className="title">
+              <span className="red"> Избранные </span> товары
+            </p>
+          </Col>
         </Row>
-        <Row>
+        <Row className="d-flex justify-content-center empty-page">
           <Col
-            className="text-center mt-5"
-            style={{ fontSize: 28, marginBottom: 200 }}
+            xs={12}
+            className="d-flex justify-content-center align-items-center"
           >
-            <b>Упс, у вас пусто...</b>
+            <Image
+              style={{ width: "300px" }}
+              src={process.env.PUBLIC_URL + "/img/productcard/tea-time.png"}
+            />
+          </Col>
+          <Col className="text-center" style={{ fontSize: 28 }} xs={12}>
+            Упс, у вас пусто...
           </Col>
         </Row>
       </Container>
