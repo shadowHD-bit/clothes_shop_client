@@ -59,7 +59,7 @@ const LocationAdmin = () => {
           <Col xs={12}>
             {showAlert ? (
               <Alert
-                variant="success"
+                variant="danger"
                 onClose={() => setShowAlert(false)}
                 dismissible
               >

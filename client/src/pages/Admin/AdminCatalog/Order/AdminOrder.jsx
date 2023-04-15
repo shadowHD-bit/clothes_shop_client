@@ -99,7 +99,7 @@ const AdminOrder = () => {
           <Col xs={12}>
             {showAlert ? (
               <Alert
-                variant="warning"
+                variant="danger"
                 onClose={() => setShowAlert(false)}
                 dismissible
               >

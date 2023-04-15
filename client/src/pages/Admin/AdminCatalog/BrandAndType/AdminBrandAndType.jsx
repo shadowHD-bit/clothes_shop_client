@@ -91,7 +91,7 @@ const AdminBrandAndType = () => {
           <Col xs={12}>
             {showAlert ? (
               <Alert
-                variant="info"
+                variant="danger"
                 onClose={() => setShowAlert(false)}
                 dismissible
               >

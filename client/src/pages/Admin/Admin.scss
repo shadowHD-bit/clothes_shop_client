@@ -1,17 +1,38 @@
-.admin_container{
-    a{
-        text-decoration: none;
+@import "../../index.scss";
+
+.admin_container {
+  a {
+    text-decoration: none;
+  }
+
+  .avatar_profile {
+    width: 35px;
+    height: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .admin_list {
+    border: 1px solid $red;
+
+    &-title {
+      font-weight: bold;
+      background-color: white;
+      border-bottom: 1px solid $red;
+      margin-bottom: 1px;
+      transition: 0.5s ease all;
     }
 
-
-    .avatar_profile{
-        width: 35px;
-        height: 35px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 5px;
+    &:hover {
+      .admin_list-title {
+        background-color: $red !important;
+        transition: 0.5s ease all;
+        color: white !important;
       }
+    }
+  }
 }

@@ -27,7 +27,7 @@ const AdminStatistic = () => {
           <Col xs={12}>
             {showAlert ? (
               <Alert
-                variant="primary"
+                variant="danger"
                 onClose={() => setShowAlert(false)}
                 dismissible
               >

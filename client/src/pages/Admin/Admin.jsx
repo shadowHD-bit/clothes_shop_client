@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Container, ListGroup, Row } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import SideBar from "../../components/UI/AdminSideBar/SideBar";
+import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import {
   fetchBadge,
   fetchBrands,
@@ -25,9 +22,11 @@ import {
   ADMIN_QUESTION_ROUTE,
   ADMIN_SIZE_ROUTE,
   ADMIN_SLIDER_ROUTE,
+  ADMIN_USERS_ROUTE,
 } from "../../utils/consts";
 import "./Admin.scss";
 import AdminTitle from "../../components/UI/AdminTitle/AdminTitle";
+import AdminInfoCard from "../../components/UI/AdminInfoCard/AdminInfoCard";
 
 const Admin = () => {
   const [countProduct, setCountProduct] = useState(0);
@@ -129,95 +128,77 @@ const Admin = () => {
         <AdminTitle charter={'Раздел "Главная"'} />
 
         <Row>
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_PRODUCT_ROUTE}>
-              <Alert variant="success">
-                <Alert.Heading>{countProduct}</Alert.Heading>
-                Количество товаров
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countProduct}
+            title={"Количество товаров"}
+            route={ADMIN_PRODUCT_ROUTE}
+            measure={"шт."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_BRANDANDTYPE_ROUTE}>
-              <Alert variant="danger">
-                <Alert.Heading>{countType}</Alert.Heading>
-                Количество типов
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countType}
+            title={"Количество типов"}
+            route={ADMIN_BRANDANDTYPE_ROUTE}
+            measure={"шт."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_BRANDANDTYPE_ROUTE}>
-              <Alert variant="warning">
-                <Alert.Heading>{countBrand}</Alert.Heading>
-                Количество брендов
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countBrand}
+            title={"Количество брендов"}
+            route={ADMIN_BRANDANDTYPE_ROUTE}
+            measure={"шт."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_QUESTION_ROUTE}>
-              <Alert variant="info">
-                <Alert.Heading>{countQuestion}</Alert.Heading>
-                Количество вопросов
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countQuestion}
+            title={"Количество вопросов"}
+            route={ADMIN_QUESTION_ROUTE}
+            measure={"шт."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_SIZE_ROUTE}>
-              <Alert variant="secondary">
-                <Alert.Heading>{countSize}</Alert.Heading>
-                Количество размеров
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countSize}
+            title={"Количество размеров"}
+            route={ADMIN_SIZE_ROUTE}
+            measure={"шт."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_BADGE_ROUTE}>
-              <Alert variant="success">
-                <Alert.Heading>{countBadge}</Alert.Heading>
-                Количество бэйджов
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countBadge}
+            title={"Количество бэйджов"}
+            route={ADMIN_BADGE_ROUTE}
+            measure={"шт."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_PRODUCT_ROUTE}>
-              <Alert variant="danger">
-                <Alert.Heading>{countUser}</Alert.Heading>
-                Количество пользователей
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countUser}
+            title={"Количество пользователей"}
+            route={ADMIN_USERS_ROUTE}
+            measure={"чел."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_PRODUCT_ROUTE}>
-              <Alert variant="success">
-                <Alert.Heading>{adminUserCount}</Alert.Heading>
-                Количество администраторов
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={adminUserCount}
+            title={"Количество администраторов"}
+            route={ADMIN_USERS_ROUTE}
+            measure={"чел."}
+          />
 
-          <Col xs={12} md={6} xl={3}>
-            <Link to={ADMIN_SLIDER_ROUTE}>
-              <Alert variant="warning">
-                <Alert.Heading>{countSlide}</Alert.Heading>
-                Количество слайдов
-              </Alert>
-            </Link>
-          </Col>
+          <AdminInfoCard
+            count={countSlide}
+            title={"Количество слайдов"}
+            route={ADMIN_SLIDER_ROUTE}
+            measure={"шт."}
+          />
         </Row>
         <Row>
           <Col xs={12} md={6} xl={4}>
-            <ListGroup as="ol" numbered>
-              <ListGroup.Item variant="danger">
+            <ListGroup className="admin_list" as="ol" numbered>
+              <ListGroup.Item className="admin_list-title">
                 Список администраторов
               </ListGroup.Item>
               {adminUser?.map((item) => (
-                <ListGroup.Item key={item.id}>
+                <ListGroup.Item key={item.id } className="admin_list-item">
                   <Row className="d-flex flex-row justify-content-center align-items-center">
                     <Col className="d-flex flex-row align-items-center">
                       {(item.isVkAccount || item.isGoogleAccount) &&
@@ -249,8 +230,8 @@ const Admin = () => {
           </Col>
 
           <Col xs={12} md={6} xl={4}>
-            <ListGroup as="ol" numbered>
-              <ListGroup.Item variant="danger">
+            <ListGroup as="ol" numbered className="admin_list">
+              <ListGroup.Item className="admin_list-title">
                 Список новых пользователей
               </ListGroup.Item>
               {newUser?.map((item) => (
@@ -286,8 +267,8 @@ const Admin = () => {
           </Col>
 
           <Col xs={12} md={6} xl={4}>
-            <ListGroup as="ol" numbered>
-              <ListGroup.Item variant="danger">
+            <ListGroup as="ol" numbered className="admin_list">
+              <ListGroup.Item className="admin_list-title">
                 Список пользователей по покупкам
               </ListGroup.Item>
               {resultMoneyUser
