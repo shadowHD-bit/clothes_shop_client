@@ -72,7 +72,7 @@ const AdminColors = () => {
         </Row>
         <Row>
           <Col xs={12} md={6} xl={4}>
-            <Card>
+            <Card className="card_colors">
               <Card.Title>
                 <p className="title_col">Палитра цветов текста</p>
               </Card.Title>
@@ -91,7 +91,7 @@ const AdminColors = () => {
             </Card>
           </Col>
           <Col xs={12} md={6} xl={4}>
-            <Card>
+            <Card className="card_colors">
               <Card.Title>
                 <p className="title_col">Палитра цветов блоков</p>
               </Card.Title>
@@ -113,7 +113,7 @@ const AdminColors = () => {
             </Card>
           </Col>
           <Col xs={12} md={6} xl={4}>
-            <Card>
+            <Card className="card_colors">
               <Card.Title>
                 <p className="title_col">Палитра серых оттенков</p>
               </Card.Title>
@@ -133,7 +133,7 @@ const AdminColors = () => {
         </Row>
         <Row>
           <Col xs={12} md={6} xl={4}>
-            <Card>
+            <Card className="card_colors">
               <Card.Title>
                 <p className="title_col">Палитра цветов текста Bootstrap</p>
               </Card.Title>
@@ -152,7 +152,7 @@ const AdminColors = () => {
             </Card>
           </Col>
           <Col xs={12} md={6} xl={4}>
-            <Card>
+            <Card className="card_colors">
               <Card.Title>
                 <p className="title_col">Палитра цветов ссылки Bootstrap</p>
               </Card.Title>
@@ -211,7 +211,7 @@ const AdminColors = () => {
             </Card>
           </Col>
           <Col xs={12} md={6} xl={4}>
-            <Card>
+            <Card className="card_colors">
               <Card.Title>
                 <p className="title_col">Палитра цветов блоков Bootstrap</p>
               </Card.Title>

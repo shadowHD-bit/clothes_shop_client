@@ -10,7 +10,6 @@ import {
   Accordion,
   Table,
   FormControl,
-  Toast,
   Card,
 } from "react-bootstrap";
 import { AiOutlineMenuFold, AiOutlinePlus } from "react-icons/ai";
@@ -28,19 +27,12 @@ const AdminBrandAndType = () => {
 
   const [brandVisible, setBrandVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
-
   const [brands, setBrands] = useState([]);
-
   const [rerender, setRerender] = useState(false);
-
   const [searchBrand, setSearchBrand] = useState("");
-
   const [types, setTypes] = useState([]);
-
   const [rerenderTypes, setRerenderTypes] = useState(false);
-
   const [searchType, setSearchType] = useState("");
-
   const [showSidebar, setShowSidebar] = useState(false);
 
   const handleShowSidebar = () => {
@@ -103,11 +95,16 @@ const AdminBrandAndType = () => {
     <>
       <Container className="admin_container">
         <Row className="admin_title">
-        <Col xs={12}>
-          <Button variant="outline-info" onClick={() => handleShowSidebar()} className="me-2">
-          <AiOutlineMenuFold />
-        </Button>
-          Админ-панель (v.1.2)</Col>
+          <Col xs={12}>
+            <Button
+              variant="outline-info"
+              onClick={() => handleShowSidebar()}
+              className="me-2"
+            >
+              <AiOutlineMenuFold />
+            </Button>
+            Админ-панель (v.1.2)
+          </Col>
         </Row>
         <Row className="admin_subtitle">
           <Col xs={12}>Раздел "Типы и бренды"</Col>
@@ -149,47 +146,51 @@ const AdminBrandAndType = () => {
         <Row>
           <Col xs={6}>
             <Row>
-              <Card
-                border="success"
-                style={{ marginLeft: 0, marginBottom: 10 }}
-              >
-                <Card.Body>
-                  <Row>
-                    <Col
-                      xs={2}
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FaFeather size={40} />
-                    </Col>
-                    <Col
-                      xs={10}
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        alignItems: "center",
-                      }}
-                    >
-                      <p style={{ fontSize: 21, textAlign: "center" }}>
-                        Количество типов: {types.count}
-                      </p>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
+              <Col>
+                <Card
+                  border="success"
+                  style={{ marginLeft: 0, marginBottom: 10, boxShadow: 'none' }}
+                >
+                  <Card.Body>
+                    <Row>
+                      <Col
+                        xs={2}
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "center",
+                        }}
+                      >
+                        <FaFeather size={40} />
+                      </Col>
+                      <Col
+                        xs={10}
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <p style={{ fontSize: 21, textAlign: "center" }}>
+                          Количество типов: {types.count}
+                        </p>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
             <Row>
-              <Button
-                variant={"outline-success"}
-                className="w-100"
-                onClick={() => setTypeVisible(true)}
-              >
-                <AiOutlinePlus />
-                Добавить тип
-              </Button>
+              <Col>
+                <Button
+                  variant={"outline-success"}
+                  className="w-100"
+                  onClick={() => setTypeVisible(true)}
+                >
+                  <AiOutlinePlus />
+                  Добавить тип
+                </Button>
+              </Col>
             </Row>
             <Row>
               <Accordion>
@@ -237,99 +238,97 @@ const AdminBrandAndType = () => {
           </Col>
           <Col xs={6}>
             <Row>
-              <Card
-                border="success"
-                style={{ marginLeft: 0, marginBottom: 10 }}
-              >
-                <Card.Body>
-                  <Row>
-                    <Col
-                      xs={2}
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FaFeather size={40} />
-                    </Col>
-                    <Col
-                      xs={10}
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        alignItems: "center",
-                      }}
-                    >
-                      <p style={{ fontSize: 21, textAlign: "center" }}>
-                        Количество брендов: {brands.count}
-                      </p>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
+              <Col>
+                <Card
+                  border="success"
+                  style={{ marginLeft: 0, marginBottom: 10, boxShadow: 'none' }}
+                >
+                  <Card.Body>
+                    <Row>
+                      <Col
+                        xs={2}
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "center",
+                        }}
+                      >
+                        <FaFeather size={40} />
+                      </Col>
+                      <Col
+                        xs={10}
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <p style={{ fontSize: 21, textAlign: "center" }}>
+                          Количество брендов: {brands.count}
+                        </p>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
             <Row>
-              <Button
-                variant={"outline-success"}
-                className="w-100"
-                onClick={() => setBrandVisible(true)}
-              >
-                <AiOutlinePlus />
-                Добавить бренд
-              </Button>
+              <Col>
+                <Button
+                  variant={"outline-success"}
+                  className="w-100"
+                  onClick={() => setBrandVisible(true)}
+                >
+                  <AiOutlinePlus />
+                  Добавить бренд
+                </Button>
+              </Col>
             </Row>
             <Row>
-              <Accordion>
-                <Accordion.Item eventKey="" className="mt-4 mb-4">
-                  <Accordion.Header>Список брендов</Accordion.Header>
-                  <Accordion.Body>
-                    <Row>
-                      <FormControl
-                        type="search"
-                        placeholder="Поиск бренда по названию"
-                        className="me-2"
-                        aria-label="Search"
-                        onChange={(e) => setSearchBrand(e.target.value)}
-                      />
-                    </Row>
-                    <Row>
-                      <Table striped bordered hover className="mt-4 p-2">
-                        <thead>
-                          <tr>
-                            <th>ID бренда</th>
-                            <th>Название</th>
-                            <th>Редактировать</th>
-                            <th>Удалить</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {filterBrands?.map((elem) => {
-                            return (
-                              <BrandItemAdmin
-                                key={elem.id}
-                                id={elem.id}
-                                name={elem.name}
-                                reRender={reRender}
-                                img_now={elem.img}
-                              />
-                            );
-                          })}
-                        </tbody>
-                      </Table>
-                    </Row>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
+              <Col>
+                <Accordion>
+                  <Accordion.Item eventKey="" className="mt-4 mb-4">
+                    <Accordion.Header>Список брендов</Accordion.Header>
+                    <Accordion.Body>
+                      <Row>
+                        <FormControl
+                          type="search"
+                          placeholder="Поиск бренда по названию"
+                          className="me-2"
+                          aria-label="Search"
+                          onChange={(e) => setSearchBrand(e.target.value)}
+                        />
+                      </Row>
+                      <Row>
+                        <Table striped bordered hover className="mt-4 p-2">
+                          <thead>
+                            <tr>
+                              <th>ID бренда</th>
+                              <th>Название</th>
+                              <th>Редактировать</th>
+                              <th>Удалить</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {filterBrands?.map((elem) => {
+                              return (
+                                <BrandItemAdmin
+                                  key={elem.id}
+                                  id={elem.id}
+                                  name={elem.name}
+                                  reRender={reRender}
+                                  img_now={elem.img}
+                                />
+                              );
+                            })}
+                          </tbody>
+                        </Table>
+                      </Row>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </Col>
             </Row>
-
-            {/* <Button
-              variant={"outline-dark"}
-              className="mt-4 p-2 w-100"
-              onClick={() => setDeleteTypeBrandVisible(true)}
-            >
-              Удалить тип/бренд
-            </Button> */}
           </Col>
         </Row>
       </Container>

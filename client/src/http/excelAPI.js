@@ -30,3 +30,8 @@ export const fetchUserExcel = async () => {
   const { data } = await $authHost.get(`api/document/excel/get-user`);
   return data;
 };
+
+export const fetchRemnantsExcel = async () => {
+  const { data } = await $authHost.get(`api/document/excel/get-remnants`);
+  return data;
+};

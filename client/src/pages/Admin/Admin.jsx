@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Button,
   Col,
   Container,
-  Image,
   ListGroup,
   Row,
 } from "react-bootstrap";
@@ -63,7 +62,7 @@ const Admin = () => {
 
   useEffect(() => {
     fetchProduct().then((data) => {
-      setCountProduct(data.count);
+      setCountProduct(data.rows.length);
     });
     fetchTypes().then((data) => {
       setCountType(data.count);

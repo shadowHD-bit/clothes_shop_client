@@ -10,12 +10,17 @@ import {
   Form,
   Table,
 } from "react-bootstrap";
-import { AiFillFileExcel, AiOutlineDownload, AiOutlineMenuFold } from "react-icons/ai";
+import {
+  AiFillFileExcel,
+  AiOutlineDownload,
+  AiOutlineMenuFold,
+} from "react-icons/ai";
 import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import {
   fetchBrandExcel,
   fetchOrderExcel,
   fetchProductExcel,
+  fetchRemnantsExcel,
   fetchTypeExcel,
   fetchUserExcel,
 } from "../../../../http/excelAPI";
@@ -126,6 +131,30 @@ const AdminDocument = () => {
         let ws = XLSX.utils.json_to_sheet(data);
         XLSX.utils.book_append_sheet(wb, ws, "Types");
         XLSX.writeFile(wb, "TypeExcel.xlsx");
+      }
+    });
+  };
+
+  const getRemnants = () => {
+    fetchRemnantsExcel().then((data) => {
+      let all_data = []
+
+      data.rows.forEach((elem) => {
+        let dataObj = {}
+        dataObj.НаименованиеТовара = elem.product.НаименованиеТовара
+        dataObj.ЦенаТовара = elem.product.ЦенаТовара
+        dataObj.НаименованиеРазмера = elem.size.НаименованиеРазмера
+        dataObj.Количество = elem.Количество
+
+        all_data.push(dataObj)
+      })
+
+
+      if (data && all_data) {
+        let wb = XLSX.utils.book_new();
+        let ws = XLSX.utils.json_to_sheet(all_data);
+        XLSX.utils.book_append_sheet(wb, ws, "Remnants");
+        XLSX.writeFile(wb, "RemnantsExcel.xlsx");
       }
     });
   };
@@ -282,8 +311,11 @@ const AdminDocument = () => {
                   <ol>
                     <li>
                       Скачайте шаблон файла формата .xlsx{" "}
-                      <Button variant="success" onClick={() => downloadPatternProduct()}>
-                      <AiOutlineDownload />
+                      <Button
+                        variant="success"
+                        onClick={() => downloadPatternProduct()}
+                      >
+                        <AiOutlineDownload />
                       </Button>
                       .
                     </li>
@@ -375,6 +407,57 @@ const AdminDocument = () => {
                     <li>Нажмите кнопку "Получить данные о заказах".</li>
                     <li>Выбирите статус заказа, который вас интересует.</li>
                   </ol>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <Link to="/files/Offer_SHOP_RU.pdf" target="_blank" download>
+                    <Button className="w-100" variant="info">
+                      <AiFillFileExcel />
+                      Официальная оферта
+                    </Button>
+                  </Link>
+                </td>
+                <td>
+                  {" "}
+                  Вы можете получить данные официальную оферту веб-сервиса.
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <Link
+                    to="/files/Refund_blank_SHOP_RU.pdf"
+                    target="_blank"
+                    download
+                  >
+                    <Button className="w-100" variant="info">
+                      <AiFillFileExcel />
+                      Договор на возврат
+                    </Button>
+                  </Link>
+                </td>
+                <td>
+                  {" "}
+                  Вы можете получить документ договора на возврат товара.
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <Button
+                    className="w-100"
+                    variant="primary"
+                    onClick={() => getRemnants()}
+                  >
+                    <AiFillFileExcel />
+                    Остатки товара
+                  </Button>
+                </td>
+                <td>
+                  Вы можете получить таблицу данных об доступном количестве
+                  товара, который представлен на странице веб-сервиса.
                 </td>
               </tr>
             </tbody>

@@ -12,9 +12,16 @@
     margin-bottom: 30px;
   }
 
-  .card {
-    border-radius: 30px;
+  .card_colors {
+    border-radius: 10px;
     font-family: "Montserrat", sans-serif;
+    box-shadow: none;
+    border: 1px solid $black;
+    margin: 10px 0px;
+
+    .title_col{
+      text-align: center;
+    }
   }
 
   .bg-gray-100 {

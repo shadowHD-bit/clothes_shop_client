@@ -70,7 +70,7 @@ const AdminButtons = () => {
           </Col>
         </Row>
         <Row>
-          <Card>
+          <Card className="card_btn">
             <Card.Body>
               <Card.Title>Основные кнопки</Card.Title>
               <Row className="mb-3">
@@ -99,7 +99,7 @@ const AdminButtons = () => {
               </Row>
             </Card.Body>
           </Card>
-          <Card>
+          <Card className="card_btn">
             <Card.Body>
               <Card.Title>Кнопки Bootstrap</Card.Title>
               <Row className="mb-3">
