@@ -3,8 +3,6 @@ import "./AdminRules.scss";
 import {
   Alert,
   Button,
-  ButtonGroup,
-  Card,
   Col,
   Container,
   Form,
@@ -17,20 +15,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { deleteRules, fetchRules } from "../../../../http/rulesAPI";
 import CreateRule from "../../../../components/modals/CreateRule";
-import { BsPen, BsPencil, BsTrashFill } from "react-icons/bs";
 import RulesItemAdmin from "../../../../components/AdminItems/RulesItemAdmin";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminRules = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showAlert, setShowAlert] = useState(true);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   const [showCreateModal, setShowCreateModal] = useState(false);
 
@@ -67,21 +56,8 @@ const AdminRules = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Основные вопросы"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Основные вопросы"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -137,8 +113,6 @@ const AdminRules = () => {
         show={showCreateModal}
         onHide={handleCloseCreateModal}
       />
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

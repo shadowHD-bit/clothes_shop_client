@@ -1,9 +1,31 @@
+@import "../../../index.scss";
+
+.off_title {
+  font-weight: bold !important;
+  font-family: "Montserrat", sans-serif;
+  color: $red;
+}
+
+.admin_offcanvas {
+  background-image: none !important;
+  background-color: white !important;
+  .btn-close {
+    fill: $red;
+    color: $red;
+    svg {
+      fill: $red;
+      color: $red;
+      background-color: $red;
+    }
+  }
+}
+
 .sidebar_container {
   padding-left: 0 !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
 
-  a{
+  a {
     text-decoration: none;
   }
 
@@ -14,9 +36,15 @@
       padding-left: 0 !important;
       margin-left: 0 !important;
       display: flex;
-      justify-content: center;
+      justify-content: start;
       height: auto;
       color: rgb(0, 0, 0);
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      margin-top: 10px;
+      .red {
+        color: $red;
+      }
     }
   }
 
@@ -27,7 +55,7 @@
       padding-left: 0 !important;
       margin-left: 0 !important;
       display: flex;
-      justify-content: center;
+      justify-content: start;
       height: auto;
       color: white;
       margin-right: 0 !important;
@@ -38,7 +66,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        color: rgb(0, 0, 0);
+        color: $white_red;
         text-decoration: none;
       }
 
@@ -48,19 +76,19 @@
         justify-content: flex-start;
         color: rgb(0, 0, 0);
         text-decoration: none;
+        font-family: "Montserrat", sans-serif;
       }
     }
 
     &:hover {
-      color: rgb(139, 0, 0);
       text-decoration: none;
       .sidebar_row_icons {
-        color: rgb(139, 0, 0);
+        color: $red;
         text-decoration: none;
       }
 
       .sidebar_row_text {
-        color: rgb(139, 0, 0);
+        color: $black;
         text-decoration: none;
       }
     }

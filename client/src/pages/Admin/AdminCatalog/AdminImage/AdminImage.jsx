@@ -3,46 +3,21 @@ import "./AdminImage.scss";
 import {
   Accordion,
   Alert,
-  Button,
   Col,
   Container,
   Image,
   Row,
 } from "react-bootstrap";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import { useState } from "react";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminImage = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showAlert, setShowAlert] = useState(true);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   return (
     <>
       <Container className="admin_container_image">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Изображения"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Изображения"'}/>
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -195,8 +170,6 @@ const AdminImage = () => {
           </Accordion>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

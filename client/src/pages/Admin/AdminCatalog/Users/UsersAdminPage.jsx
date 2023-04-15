@@ -12,27 +12,14 @@ import {
   Table,
 } from "react-bootstrap";
 import "./UsersAdminPage.scss";
-import { AiOutlineMenuFold } from "react-icons/ai";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { getAllUserForAdmin } from "../../../../http/userAPI";
 import UserItemAdmin from "../../../../components/AdminItems/UserItemAdmin";
 import useDebounce from "../../../../hooks/useDebounce";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const UsersAdminPage = () => {
   const [showAlert, setShowAlert] = useState(true);
   const [stateAccordion, setStateAccordion] = useState(false);
-
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
-
-  //----------------------
 
   const [searchValue, setSearchValue] = useState("");
   const [users, setUsers] = useState([]);
@@ -106,21 +93,8 @@ const UsersAdminPage = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-info"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Пользователи"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Пользователи"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -187,7 +161,11 @@ const UsersAdminPage = () => {
                   </thead>
                   <tbody>
                     {users.map((user) => (
-                      <UserItemAdmin key={user.id} props={user} reRender={reRender}/>
+                      <UserItemAdmin
+                        key={user.id}
+                        props={user}
+                        reRender={reRender}
+                      />
                     ))}
                   </tbody>
                 </Table>
@@ -207,8 +185,6 @@ const UsersAdminPage = () => {
           </Accordion>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

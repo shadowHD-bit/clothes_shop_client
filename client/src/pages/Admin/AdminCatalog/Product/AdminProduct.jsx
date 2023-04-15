@@ -15,12 +15,11 @@ import {
 } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import ProductItemAdmin from "../../../../components/AdminItems/productItemAdmin";
 import CreateProduct from "../../../../components/modals/CreateProduct";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchProductsForAdmin } from "../../../../http/productAPI";
 import "./AdminProduct.scss";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminProduct = () => {
   const [showAlert, setShowAlert] = useState(true);
@@ -44,25 +43,16 @@ const AdminProduct = () => {
   useEffect(() => {
     fetchProductsForAdmin().then((data) => {
       setProductData(data.rows);
-      setCountProducts(data.rows.length)
+      setCountProducts(data.rows.length);
     });
   }, []);
 
   useEffect(() => {
     fetchProductsForAdmin().then((data) => {
       setProductData(data.rows);
-      setCountProducts(data.rows.length)
+      setCountProducts(data.rows.length);
     });
   }, []);
-
-  // useEffect(() => {
-  //   fetchProductsForAdmin({
-  //     page: currentPageProduct,
-  //     limit: limitProduct,
-  //   }).then((data) => {
-  //     setProductData(data.rows);
-  //   });
-  // }, [currentPageProduct]);
 
   const filteredProduct = productData.filter((prod) => {
     if (searchValue) {
@@ -76,7 +66,7 @@ const AdminProduct = () => {
   useEffect(() => {
     fetchProductsForAdmin().then((data) => {
       setProductData(data.rows);
-      setCountProducts(data.rows.length)
+      setCountProducts(data.rows.length);
     });
   }, [rerenderProduct]);
 
@@ -101,21 +91,8 @@ const AdminProduct = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Товары"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Товара"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -193,12 +170,14 @@ const AdminProduct = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredProduct.slice(firstProductIndex, lastProductIndex).map((productItem) => (
-                        <ProductItemAdmin
-                          productItem={productItem}
-                          reRenderProduct={reRenderProduct}
-                        />
-                      ))}
+                      {filteredProduct
+                        .slice(firstProductIndex, lastProductIndex)
+                        .map((productItem) => (
+                          <ProductItemAdmin
+                            productItem={productItem}
+                            reRenderProduct={reRenderProduct}
+                          />
+                        ))}
                     </tbody>
                   </Table>
                   <Pagination className="mt-3">
@@ -218,8 +197,6 @@ const AdminProduct = () => {
           </Col>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
 
       <CreateProduct
         show={productVisible}

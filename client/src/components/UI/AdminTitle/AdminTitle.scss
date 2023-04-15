@@ -1,0 +1,21 @@
+@import "../../../index.scss";
+
+.admin_title {
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: bold !important;
+
+  .red {
+    color: $red;
+  }
+}
+
+.admin_subtitle {
+  margin-top: 10px;
+  font-size: 21px;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: bold !important;
+
+}

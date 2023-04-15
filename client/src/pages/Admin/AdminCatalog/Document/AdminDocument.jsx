@@ -29,19 +29,10 @@ import "./AdminDocument.scss";
 import * as XLSX from "xlsx";
 import ExcelItemAdmin from "../../../../components/AdminItems/ExcelItemAdmin";
 import { Link } from "react-router-dom";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminDocument = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
-
   const [showAlert, setShowAlert] = useState(true);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -137,18 +128,17 @@ const AdminDocument = () => {
 
   const getRemnants = () => {
     fetchRemnantsExcel().then((data) => {
-      let all_data = []
+      let all_data = [];
 
       data.rows.forEach((elem) => {
-        let dataObj = {}
-        dataObj.НаименованиеТовара = elem.product.НаименованиеТовара
-        dataObj.ЦенаТовара = elem.product.ЦенаТовара
-        dataObj.НаименованиеРазмера = elem.size.НаименованиеРазмера
-        dataObj.Количество = elem.Количество
+        let dataObj = {};
+        dataObj.НаименованиеТовара = elem.product.НаименованиеТовара;
+        dataObj.ЦенаТовара = elem.product.ЦенаТовара;
+        dataObj.НаименованиеРазмера = elem.size.НаименованиеРазмера;
+        dataObj.Количество = elem.Количество;
 
-        all_data.push(dataObj)
-      })
-
+        all_data.push(dataObj);
+      });
 
       if (data && all_data) {
         let wb = XLSX.utils.book_new();
@@ -220,21 +210,8 @@ const AdminDocument = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="success"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Документы"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Документы"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -464,8 +441,6 @@ const AdminDocument = () => {
           </Table>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
 
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>

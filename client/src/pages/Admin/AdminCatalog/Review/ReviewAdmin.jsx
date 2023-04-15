@@ -1,29 +1,29 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Accordion, Alert, Button, Col, Container, Row, Table } from "react-bootstrap";
+import {
+  Accordion,
+  Alert,
+  Button,
+  Col,
+  Container,
+  Row,
+  Table,
+} from "react-bootstrap";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import ReviewItemAdmin from "../../../../components/AdminItems/ReviewItemAdmin";
 import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchReviews } from "../../../../http/reviewsAPI";
 import "./ReviewAdmin.scss";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const ReviewAdmin = () => {
   const [showAlert, setShowAlert] = useState(true);
 
-  const [showSidebar, setShowSidebar] = useState(false);
   const [stateAccordion, setStateAccordion] = useState(false);
 
   const [reviews, setReviews] = useState([]);
 
   const [rerenderReview, setRerenderReview] = useState(false);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   useEffect(() => {
     fetchReviews().then((data) => {
@@ -34,8 +34,8 @@ const ReviewAdmin = () => {
   //re-render after change status, or delete some order
   useEffect(() => {
     fetchReviews().then((data) => {
-        setReviews(data);
-      });
+      setReviews(data);
+    });
   }, [rerenderReview]);
 
   const reRender = () => {
@@ -46,21 +46,8 @@ const ReviewAdmin = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-success"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Вопросы"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Отзывы"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -115,15 +102,13 @@ const ReviewAdmin = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {
-                        reviews.rows?.map((item) => (
-                            <ReviewItemAdmin 
-                            key={item.id}
-                            review_data={item}
-                            reRender={reRender}
-                            />
-                        ))
-                    }
+                    {reviews.rows?.map((item) => (
+                      <ReviewItemAdmin
+                        key={item.id}
+                        review_data={item}
+                        reRender={reRender}
+                      />
+                    ))}
                   </tbody>
                 </Table>
               </Accordion.Body>
@@ -131,8 +116,6 @@ const ReviewAdmin = () => {
           </Accordion>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

@@ -16,20 +16,12 @@ import { AiOutlineMenuFold } from "react-icons/ai";
 import QuestionItemAdmin from "../../../../components/AdminItems/QuestionItemAdmin";
 import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchQuestion } from "../../../../http/questionAPI";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminQuestion = () => {
   const [showAlert, setShowAlert] = useState(true);
 
-  const [showSidebar, setShowSidebar] = useState(false);
   const [stateAccordion, setStateAccordion] = useState(false);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   const [questions, setQuestions] = useState([]);
   const [currentPageQuestion, setCurrentPageQuestion] = useState(1);
@@ -114,21 +106,8 @@ const AdminQuestion = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Вопросы"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Вопросы"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -277,8 +256,6 @@ const AdminQuestion = () => {
           </Accordion>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

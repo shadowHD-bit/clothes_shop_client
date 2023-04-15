@@ -46,15 +46,17 @@ import "./SideBar.scss";
 const SideBar = ({ show, handleClose }) => {
   return (
     <>
-      <Offcanvas show={show} onHide={handleClose}>
+      <Offcanvas show={show} onHide={handleClose} className="admin_offcanvas">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Навигация</Offcanvas.Title>
+          <Offcanvas.Title className="off_title">Навигация</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Container fluid className="sidebar_container">
             <Row className="sidebar_row_dop">
               <Col xs={12} className="sidebar_col_dop">
-                ОСНОВНЫЕ НАСТРОЙКИ
+                <p className="p-0 ml-3 mb-0">
+                  <span className="red">ОСНОВНЫЕ</span> НАСТРОЙКИ
+                </p>
               </Col>
             </Row>
 
@@ -62,10 +64,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdOutlineDomainVerification size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Главная
                     </Col>
                   </Row>
@@ -77,10 +79,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_STATISTIC_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdSupport size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Статистика
                     </Col>
                   </Row>
@@ -92,10 +94,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_BRANDANDTYPE_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdSupport size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Бренды и типы
                     </Col>
                   </Row>
@@ -107,10 +109,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_USERS_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdPerson size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Пользователи
                     </Col>
                   </Row>
@@ -122,10 +124,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_PRODUCT_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdToys size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Товары
                     </Col>
                   </Row>
@@ -137,10 +139,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_SIZE_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdSell size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Размеры
                     </Col>
                   </Row>
@@ -152,10 +154,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_BADGE_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdBadge size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Баджи
                     </Col>
                   </Row>
@@ -167,10 +169,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_COUPONS_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdCake size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Купоны
                     </Col>
                   </Row>
@@ -182,10 +184,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_ORDER_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdDocumentScanner size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Заказы
                     </Col>
                   </Row>
@@ -197,10 +199,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_EXCEL_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdTextSnippet size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Документы
                     </Col>
                   </Row>
@@ -212,10 +214,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_SLIDER_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdTabletMac size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Слайдер
                     </Col>
                   </Row>
@@ -227,10 +229,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_QUESTION_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdQuestionAnswer size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Вопросы
                     </Col>
                   </Row>
@@ -242,10 +244,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_REVIEW_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdReviews size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Отзывы
                     </Col>
                   </Row>
@@ -257,10 +259,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_RULES_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdQuiz size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Основные вопросы
                     </Col>
                   </Row>
@@ -272,10 +274,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_LOCATION_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdMap size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Основные места
                     </Col>
                   </Row>
@@ -285,7 +287,9 @@ const SideBar = ({ show, handleClose }) => {
 
             <Row className="sidebar_row_dop">
               <Col xs={12} className="sidebar_col_dop">
-                ДЛЯ РАЗРАБОТЧИКА
+                <p className="p-0 ml-3 mb-0">
+                  ДЛЯ <span className="red"> РАЗРАБОТЧИКА</span>
+                </p>
               </Col>
             </Row>
 
@@ -293,38 +297,24 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_COLORS_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdColorLens size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Цвета
                     </Col>
                   </Row>
                 </Col>
               </Link>
             </Row>
-
-            {/* <Row className="sidebar_row">
-              <Col xs={12} className="sidebar_col">
-                <Row>
-                  <Col xs={6} className="sidebar_row_icons">
-                    <MdPattern size={"30px"} />
-                  </Col>
-                  <Col xs={6} className="sidebar_row_text">
-                    Шаблоны
-                  </Col>
-                </Row>
-              </Col>
-            </Row> */}
-
             <Row className="sidebar_row">
               <Link to={ADMIN_BUTTONS_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdSmartButton size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Кнопки
                     </Col>
                   </Row>
@@ -336,10 +326,10 @@ const SideBar = ({ show, handleClose }) => {
               <Link to={ADMIN_IMG_ROUTE}>
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdImage size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       Изображения
                     </Col>
                   </Row>
@@ -348,13 +338,16 @@ const SideBar = ({ show, handleClose }) => {
             </Row>
 
             <Row className="sidebar_row">
-              <a href={process.env.REACT_APP_API_URL + "api/docs"}>
+              <a
+                href={process.env.REACT_APP_API_URL + "api/docs"}
+                target="_blank"
+              >
                 <Col xs={12} className="sidebar_col">
                   <Row>
-                    <Col xs={6} className="sidebar_row_icons">
+                    <Col xs={"auto"} className="sidebar_row_icons">
                       <MdSubject size={"30px"} />
                     </Col>
-                    <Col xs={6} className="sidebar_row_text">
+                    <Col xs={"auto"} className="sidebar_row_text">
                       API
                     </Col>
                   </Row>

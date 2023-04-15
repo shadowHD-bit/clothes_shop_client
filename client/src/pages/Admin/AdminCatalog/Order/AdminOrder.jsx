@@ -13,24 +13,14 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import OrderItemAdmin from "../../../../components/AdminItems/OrderItemAdmin";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchOrders } from "../../../../http/orderAPI";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminOrder = () => {
   const [showAlert, setShowAlert] = useState(true);
 
-  const [showSidebar, setShowSidebar] = useState(false);
   const [stateAccordion, setStateAccordion] = useState(false);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   const [orders, setOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,31 +35,33 @@ const AdminOrder = () => {
   const [searchValueOrder, setSearchValueOrder] = useState("");
 
   useEffect(() => {
-    fetchOrders({ limit, page: 1, complete:filter }).then((data) => {
+    fetchOrders({ limit, page: 1, complete: filter }).then((data) => {
       setOrders(data);
       setCount(data.count);
     });
   }, []);
 
   useEffect(() => {
-    fetchOrders({ limit, page: 1, complete:filter }).then((data) => {
+    fetchOrders({ limit, page: 1, complete: filter }).then((data) => {
       setOrders(data);
       setCount(data.count);
     });
   }, []);
 
   useEffect(() => {
-    fetchOrders({ limit, page: currentPage, complete:filter }).then((data) => {
+    fetchOrders({ limit, page: currentPage, complete: filter }).then((data) => {
       setOrders(data);
     });
   }, [currentPage]);
 
   useEffect(() => {
-    fetchOrders({ limit, page: 1, complete: filter, complete:filter }).then((data) => {
-      setOrders(data);
-      setCount(data.count);
-      setCurrentPage(1);
-    });
+    fetchOrders({ limit, page: 1, complete: filter, complete: filter }).then(
+      (data) => {
+        setOrders(data);
+        setCount(data.count);
+        setCurrentPage(1);
+      }
+    );
   }, [filter]);
 
   //re-render after change status, or delete some order
@@ -101,21 +93,8 @@ const AdminOrder = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-warning"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Заказы"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Заказы"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -237,7 +216,13 @@ const AdminOrder = () => {
                         })
                         .slice()
                         .map(
-                          ({ id, isComplete, createdAt, updatedAt, userId }) => (
+                          ({
+                            id,
+                            isComplete,
+                            createdAt,
+                            updatedAt,
+                            userId,
+                          }) => (
                             <OrderItemAdmin
                               key={id}
                               id={id}
@@ -264,8 +249,6 @@ const AdminOrder = () => {
           </Col>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

@@ -10,16 +10,13 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import LocationItemAdmin from "../../../../components/AdminItems/LocationItemAdmin";
 import CreateLocation from "../../../../components/modals/CreateLocation";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchLocations } from "../../../../http/locationAPI";
 import "./LocationAdmin.scss";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const LocationAdmin = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
-
   const [showAlert, setShowAlert] = useState(true);
   const [stateAccordion, setStateAccordion] = useState(false);
 
@@ -32,14 +29,6 @@ const LocationAdmin = () => {
       setLocation(data.rows);
     });
   }, []);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   const handleShowLocation = () => {
     setStateModalCreate(true);
@@ -64,21 +53,8 @@ const LocationAdmin = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="success"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Основные места"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Основные места"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -132,7 +108,9 @@ const LocationAdmin = () => {
                     </thead>
                     <tbody>
                       {location?.map((item) => {
-                        return <LocationItemAdmin reRender={reRender} item={item} />;
+                        return (
+                          <LocationItemAdmin reRender={reRender} item={item} />
+                        );
                       })}
                     </tbody>
                   </Table>
@@ -148,8 +126,6 @@ const LocationAdmin = () => {
         show={stateModalCreate}
         onHide={handleCloseLocation}
       />
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

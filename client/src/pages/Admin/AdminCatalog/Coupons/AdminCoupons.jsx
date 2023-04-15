@@ -10,18 +10,15 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import CreateCoupon from "../../../../components/modals/CreateCoupon";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { deleteCoupon, fetchCoupons } from "../../../../http/couponAPI";
 
 import "./AdminCoupons.scss";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminCoupons = () => {
   const [showAlert, setShowAlert] = useState(true);
-
-  const [showSidebar, setShowSidebar] = useState(false);
 
   const [coupons, setCoupons] = useState([]);
 
@@ -41,14 +38,6 @@ const AdminCoupons = () => {
     setCreateModalState(false);
   };
 
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
-
   const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
@@ -61,30 +50,17 @@ const AdminCoupons = () => {
     setRerender(!rerender);
   };
 
-  const deleteCouponInAdmin =(id) => {
+  const deleteCouponInAdmin = (id) => {
     deleteCoupon(id).then(() => {
-        reRender()
-    })
-  }
+      reRender();
+    });
+  };
 
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Купоны"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Купоны"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -125,19 +101,22 @@ const AdminCoupons = () => {
         </Row>
         <Row className="mt-3">
           {coupons?.map((item) => (
-              <ButtonGroup size="mb" style={{width: 'min-content'}}key={item.id}>
-                <Button variant="danger" disabled={true}>
-                  {item.code} ({item.discount}%)
-                </Button>
-                <Button variant="danger">
-                  <BsTrash onClick={() => deleteCouponInAdmin(item.id)}/>
-                </Button>
-              </ButtonGroup>
+            <ButtonGroup
+              size="mb"
+              style={{ width: "min-content" }}
+              key={item.id}
+            >
+              <Button variant="danger" disabled={true}>
+                {item.code} ({item.discount}%)
+              </Button>
+              <Button variant="danger">
+                <BsTrash onClick={() => deleteCouponInAdmin(item.id)} />
+              </Button>
+            </ButtonGroup>
           ))}
         </Row>
       </Container>
 
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
       <CreateCoupon
         show={createModalState}
         reRender={reRender}

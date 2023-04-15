@@ -7,21 +7,11 @@ import ChangeSlides from "../../../../components/modals/ChangeSlide";
 import CreateSlider from "../../../../components/modals/CreateSlides";
 import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchSlider } from "../../../../http/sliderAPI";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminSlider = () => {
   const [showAlert, setShowAlert] = useState(true);
-
-  const [showSidebar, setShowSidebar] = useState(false);
-
   const [slideCreateVisible, setSlideCreateVisible] = useState(false);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   const [slides, setSlides] = useState([]);
   useEffect(() => {
@@ -45,21 +35,8 @@ const AdminSlider = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-info"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Слайдер"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Слайдер"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -131,8 +108,6 @@ const AdminSlider = () => {
           </Table>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
 
       <CreateSlider
         reRender={reRender}

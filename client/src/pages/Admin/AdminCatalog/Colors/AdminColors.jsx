@@ -1,50 +1,18 @@
 import React from "react";
 import "./AdminColors.scss";
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Card,
-  Col,
-  Container,
-  Form,
-  Row,
-} from "react-bootstrap";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
-import { AiOutlineMenuFold } from "react-icons/ai";
+import { Alert, Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useEffect } from "react";
 import { useState } from "react";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const AdminColors = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showAlert, setShowAlert] = useState(true);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
 
   return (
     <>
       <Container className="admin_container_colors">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Цвета"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Цвета"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -232,8 +200,6 @@ const AdminColors = () => {
           </Col>
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };

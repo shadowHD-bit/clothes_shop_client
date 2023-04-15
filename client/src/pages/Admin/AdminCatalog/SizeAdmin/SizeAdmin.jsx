@@ -10,15 +10,14 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import {
   createSize,
   deleteSizeApi,
   fetchSizes,
 } from "../../../../http/productAPI";
 import "./SizeAdmin.scss";
+import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
 
 const SizeAdmin = () => {
   const [showAlert, setShowAlert] = useState(true);
@@ -52,9 +51,7 @@ const SizeAdmin = () => {
 
     arr.forEach((e) => (isNaN(e.size) ? strings : numbers).push(e));
 
-    numbers = numbers.sort(
-      (a, b) => Number(a.size) - Number(b.size)
-    );
+    numbers = numbers.sort((a, b) => Number(a.size) - Number(b.size));
     strings = strings.sort();
 
     return numbers.concat(strings);
@@ -89,21 +86,8 @@ const SizeAdmin = () => {
   return (
     <>
       <Container className="admin_container">
-        <Row className="admin_title">
-          <Col xs={12}>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleShowSidebar()}
-              className="me-2"
-            >
-              <AiOutlineMenuFold />
-            </Button>
-            Админ-панель (v.1.2)
-          </Col>
-        </Row>
-        <Row className="admin_subtitle">
-          <Col xs={12}>Раздел "Размеры"</Col>
-        </Row>
+        <AdminTitle charter={'Раздел "Размеры"'} />
+
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -126,8 +110,11 @@ const SizeAdmin = () => {
                     нажми на иконку корзины.
                   </li>
                 </ul>
-                <p>ВНИМАНИЕ! Если вы удалите размер, который указан в параметрах товара, то этот параметр будет удален и из характеристик товара!</p>
-
+                <p>
+                  ВНИМАНИЕ! Если вы удалите размер, который указан в параметрах
+                  товара, то этот параметр будет удален и из характеристик
+                  товара!
+                </p>
               </Alert>
             ) : (
               ""
@@ -166,8 +153,6 @@ const SizeAdmin = () => {
           ))}
         </Row>
       </Container>
-
-      <SideBar show={showSidebar} handleClose={handleCloseSidebar} />
     </>
   );
 };
