@@ -3,36 +3,48 @@
 .footer {
   padding-top: 40px;
   font-family: "Montserrat", sans-serif;
-  .footer_container {
-    a {
-      text-decoration: none;
-      display: block;
-      width: fit-content;
-    }
-    .text_logo {
-      margin: 0;
-      padding: 0;
-      font-size: 30px;
-      font-weight: 900;
-      color: $black;
-      display: block;
-      width: fit-content;
-      text-align: center;
 
-      .logo_dot {
-        color: $red;
-      }
-    }
+  a {
+    text-decoration: none;
+  }
 
-    .footer_link {
-      font-size: 16px;
-      text-decoration: none;
-      color: $grey;
+  .text_us {
+    font-size: 14px;
+    margin: 0px 0px;
+    padding-right: 30px;
+    padding-left: 0px;
+    text-align: center;
+  }
 
-      &:hover {
-        color: $red;
-      }
+  .text_logo {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    font-weight: 900;
+    color: $black;
+    display: block;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .dot {
+      color: $red;
     }
+  }
+}
+.red-footer {
+  color: $red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.footer_link {
+  color: $black;
+  text-align: center;
+
+  &:hover {
+    color: $red;
   }
 }
 
