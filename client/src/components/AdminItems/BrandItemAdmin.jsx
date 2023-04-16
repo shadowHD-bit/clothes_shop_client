@@ -3,17 +3,17 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
-import ChangeBrand from "../modals/ChangeBrand";
+import ChangeBrand from "../../templates/Modal/AdminBrand/ChangeBrandModal/ChangeBrandModal";
 import DeleteBrandModal from "../modals/DeleteBrandModal";
+import DeleteSureModal from "../../templates/Modal/DeleteSureModal/DeleteSureModal";
+import { deleteBrand } from "../../http/productAPI";
 
-const BrandItemAdmin = ({ id, name, img_now, handleShowToast, reRender }) => {
+const BrandItemAdmin = ({ id, name, img_now, reRender }) => {
   const [showDelete, setShowDelete] = useState(false);
-
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
 
   const [showChange, setShowChange] = useState(false);
-
   const handleCloseChange = () => setShowChange(false);
   const handleShowChange = () => setShowChange(true);
 
@@ -24,7 +24,7 @@ const BrandItemAdmin = ({ id, name, img_now, handleShowToast, reRender }) => {
         <td>{name}</td>
         <td>
           <Button variant="warning">
-            <BsPencilFill size={15} onClick={() => handleShowChange()}/>
+            <BsPencilFill size={15} onClick={() => handleShowChange()} />
           </Button>
         </td>
         <td>
@@ -34,20 +34,22 @@ const BrandItemAdmin = ({ id, name, img_now, handleShowToast, reRender }) => {
         </td>
       </tr>
 
-      <ChangeBrand 
-      id={id}
-      name={name}
-      show={showChange}
-      onHide={handleCloseChange}
-      reRender={reRender}
-      img_now={img_now}
-      />
+      {showChange && (
+        <ChangeBrand
+          id={id}
+          name={name}
+          show={showChange}
+          onHide={handleCloseChange}
+          reRender={reRender}
+          img_now={img_now}
+        />
+      )}
 
-      <DeleteBrandModal
-        id={id}
-        name={name}
+      <DeleteSureModal
+        text={`Вы уверены, что хотите удалить бренд "${name}"`}
         show={showDelete}
         handleClose={handleCloseDelete}
+        action={() => deleteBrand(id)}
         reRender={reRender}
       />
     </>

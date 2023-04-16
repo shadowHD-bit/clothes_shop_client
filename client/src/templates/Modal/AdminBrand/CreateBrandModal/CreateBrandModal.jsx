@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Form, Button, Image } from "react-bootstrap";
-import { createType } from "../../../http/productAPI";
-import ModalTitle from "../../../components/UI/ModalTitle/ModalTitle";
-import "./CreateTypeModal.scss";
-import useToast from "../../../hooks/useToast";
-import ToastError from "../../../components/Toast/Toast";
+import { Button, Form, Image } from "react-bootstrap";
+import { createBrand } from "../../../../http/productAPI";
+import ModalTitle from "../../../../components/UI/ModalTitle/ModalTitle";
+import useToast from "../../../../hooks/useToast";
+import ToastError from "../../../../components/Toast/Toast";
 
-const CreateType = ({ show, onHide, reRender }) => {
+const CreateBrand = ({ show, onHide, reRender }) => {
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
 
@@ -19,23 +18,21 @@ const CreateType = ({ show, onHide, reRender }) => {
     sysMessage,
   } = useToast();
 
-  const selectFile = (e) => {
-    setFile(e.target.files[0]);
-  };
-
   useEffect(() => {
     setFile(null);
     setValue("");
   }, [show]);
 
-  const addType = () => {
+  const addBrand = () => {
     const formData = new FormData();
     formData.append("name", value);
-    formData.append("img", file);
-    createType(formData)
+    if (file) {
+      formData.append("img", file);
+    }
+    createBrand(formData)
       .then(() => {
         onHide();
-        setSysMessage("Новый тип добавлен!");
+        setSysMessage("Новый бренд добавлен!");
         handleCloseToast();
         handleOpenToast();
         reRender();
@@ -48,12 +45,11 @@ const CreateType = ({ show, onHide, reRender }) => {
         handleOpenToast();
       });
   };
-
   return (
     <>
       <Modal show={show} onHide={onHide} centered>
         <Modal.Header closeButton>
-          <ModalTitle firstText={"Добавить"} secondText={"новый тип"} />
+          <ModalTitle firstText={"Добавить"} secondText={"бренд"} />
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -61,12 +57,15 @@ const CreateType = ({ show, onHide, reRender }) => {
             <Form.Control
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder={"Новый тип"}
+              placeholder={"Введите название бренда"}
             />
             <Form.Label className="mt-3 added-label">
               Добавте изображение:
             </Form.Label>
-            <Form.Control type="file" onChange={selectFile} />
+            <Form.Control
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
           </Form>
           <Form.Label className="mt-3 added-label">Демо:</Form.Label>
 
@@ -75,15 +74,15 @@ const CreateType = ({ show, onHide, reRender }) => {
           ) : (
             <Image
               width={"100%"}
-              src="https://imgholder.ru/600x300/8493a8/000000&text=Изображение+типа&font=kelson"
+              src="https://imgholder.ru/600x300/8493a8/000000&text=Изображение+бренда&font=kelson"
             />
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-danger" onClick={onHide}>
+          <Button variant="outline-danger" onClick={() => onHide()}>
             Закрыть
           </Button>
-          <Button variant="outline-success" onClick={addType}>
+          <Button variant="outline-success" onClick={() => addBrand()}>
             Добавить
           </Button>
         </Modal.Footer>
@@ -100,4 +99,4 @@ const CreateType = ({ show, onHide, reRender }) => {
   );
 };
 
-export default CreateType;
+export default CreateBrand;

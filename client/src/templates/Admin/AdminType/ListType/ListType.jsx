@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
 import useModal from "../../../../hooks/useModal";
-import CreateType from "../../../Modal/CreateTypeModal/CreateTypeModal";
+import CreateType from "../../../Modal/AdminType/CreateTypeModal/CreateTypeModal";
 import { FaFeather } from "react-icons/fa";
 import TypeItemAdmin from "../../../../components/AdminItems/TypeItemAdmin";
 

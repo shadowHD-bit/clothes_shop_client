@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
-import ChangeType from "../modals/ChangeType";
+import ChangeType from "../../templates/Modal/AdminType/ChangeTypeModal/ChangeTypeModal";
 import DeleteSureModal from "../../templates/Modal/DeleteSureModal/DeleteSureModal";
 import { deleteType } from "../../http/productAPI";
 
