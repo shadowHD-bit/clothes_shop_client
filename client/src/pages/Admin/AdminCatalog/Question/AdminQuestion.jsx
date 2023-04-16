@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Accordion,
   Alert,
-  Button,
   Col,
   Container,
   Dropdown,
@@ -12,11 +11,10 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import QuestionItemAdmin from "../../../../components/AdminItems/QuestionItemAdmin";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import { fetchQuestion } from "../../../../http/questionAPI";
 import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
+import useRerender from "../../../../hooks/useRerender";
 
 const AdminQuestion = () => {
   const [showAlert, setShowAlert] = useState(true);
@@ -27,7 +25,8 @@ const AdminQuestion = () => {
   const [currentPageQuestion, setCurrentPageQuestion] = useState(1);
   const [countQuestion, setCountQuestion] = useState(0);
   const [filterQuestion, setFilterQuestion] = useState("all");
-  const [rerenderQuestions, setRerenderQuestion] = useState(false);
+
+  const { render, reRender } = useRerender();
 
   //Question pagination
   const limitQuestion = 5;
@@ -65,7 +64,6 @@ const AdminQuestion = () => {
       setQuestions(data);
       setCountQuestion(data.count);
       setCurrentPageQuestion(1);
-      console.log(data);
     });
   }, [filterQuestion]);
 
@@ -80,11 +78,7 @@ const AdminQuestion = () => {
       setCountQuestion(data.count);
       setCurrentPageQuestion(1);
     });
-  }, [rerenderQuestions]);
-
-  const reRenderQuestion = () => {
-    setRerenderQuestion(!rerenderQuestions);
-  };
+  }, [render]);
 
   //Question pagination
   for (
@@ -107,7 +101,6 @@ const AdminQuestion = () => {
     <>
       <Container className="admin_container">
         <AdminTitle charter={'Раздел "Вопросы"'} />
-
         <Row>
           <Col xs={12}>
             {showAlert ? (
@@ -203,11 +196,8 @@ const AdminQuestion = () => {
                     <tr>
                       <th>ID вопроса</th>
                       <th>ID товара</th>
-                      <th>ID пользователя</th>
-                      <th>Название товара</th>
-                      <th>Дата создания вопроса</th>
                       <th>Статус</th>
-                      <th>Дата изменения</th>
+                      <th>Вопрос</th>
                       <th>Подробнее</th>
                       <th>Завершить</th>
                       <th>Удалить</th>
@@ -238,7 +228,7 @@ const AdminQuestion = () => {
                           createdAt={createdAt}
                           product={product}
                           answer={answer}
-                          reRenderQuestion={reRenderQuestion}
+                          reRenderQuestion={reRender}
                         />
                       )
                     )}

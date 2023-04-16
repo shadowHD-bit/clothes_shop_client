@@ -63,7 +63,7 @@ const AdminSlider = () => {
           </Col>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <Button
               variant={"outline-dark"}
               className="w-100"
