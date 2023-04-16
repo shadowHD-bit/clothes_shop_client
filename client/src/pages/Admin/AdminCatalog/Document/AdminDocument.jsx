@@ -10,12 +10,7 @@ import {
   Form,
   Table,
 } from "react-bootstrap";
-import {
-  AiFillFileExcel,
-  AiOutlineDownload,
-  AiOutlineMenuFold,
-} from "react-icons/ai";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
+import { AiFillFileExcel, AiOutlineDownload } from "react-icons/ai";
 import {
   fetchBrandExcel,
   fetchOrderExcel,
@@ -30,13 +25,18 @@ import * as XLSX from "xlsx";
 import ExcelItemAdmin from "../../../../components/AdminItems/ExcelItemAdmin";
 import { Link } from "react-router-dom";
 import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
+import {
+  downloadPatternProductExcel,
+  getBrandDataExcel,
+  getOrderDataExcel,
+  getProductDataExcel,
+  getRemnantsExcel,
+  getTypeDataExcel,
+  getUserDataExcel,
+} from "../../../../utils/helpers/documentParse.helper";
 
 const AdminDocument = () => {
   const [showAlert, setShowAlert] = useState(true);
-
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const toggleShow = () => setShow((s) => !s);
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
@@ -73,138 +73,6 @@ const AdminDocument = () => {
 
   const uploadInDatabase = () => {
     createMoreProduct(excelData).then((data) => handleCloseModalUpload());
-  };
-
-  const getProductData = () => {
-    fetchProductExcel().then((data) => {
-      data.rows.forEach(function (element) {
-        element.Бренд = element.product_brand.name;
-        element.Тип = element.product_type.name;
-        delete element.product_brand;
-        delete element.product_type;
-      });
-
-      if (data) {
-        let wb = XLSX.utils.book_new();
-        let ws = XLSX.utils.json_to_sheet(data.rows);
-        XLSX.utils.book_append_sheet(wb, ws, "Product");
-        XLSX.writeFile(wb, "ProductExcel.xlsx");
-      }
-    });
-  };
-
-  const getBrandData = () => {
-    fetchBrandExcel().then((data) => {
-      if (data) {
-        let wb = XLSX.utils.book_new();
-        let ws = XLSX.utils.json_to_sheet(data);
-        XLSX.utils.book_append_sheet(wb, ws, "Brands");
-        XLSX.writeFile(wb, "BrandExcel.xlsx");
-      }
-    });
-  };
-
-  const getUserData = () => {
-    fetchUserExcel().then((data) => {
-      if (data) {
-        let wb = XLSX.utils.book_new();
-        let ws = XLSX.utils.json_to_sheet(data);
-        XLSX.utils.book_append_sheet(wb, ws, "User");
-        XLSX.writeFile(wb, "UserExcel.xlsx");
-      }
-    });
-  };
-
-  const getTypeData = () => {
-    fetchTypeExcel().then((data) => {
-      if (data) {
-        let wb = XLSX.utils.book_new();
-        let ws = XLSX.utils.json_to_sheet(data);
-        XLSX.utils.book_append_sheet(wb, ws, "Types");
-        XLSX.writeFile(wb, "TypeExcel.xlsx");
-      }
-    });
-  };
-
-  const getRemnants = () => {
-    fetchRemnantsExcel().then((data) => {
-      let all_data = [];
-
-      data.rows.forEach((elem) => {
-        let dataObj = {};
-        dataObj.НаименованиеТовара = elem.product.НаименованиеТовара;
-        dataObj.ЦенаТовара = elem.product.ЦенаТовара;
-        dataObj.НаименованиеРазмера = elem.size.НаименованиеРазмера;
-        dataObj.Количество = elem.Количество;
-
-        all_data.push(dataObj);
-      });
-
-      if (data && all_data) {
-        let wb = XLSX.utils.book_new();
-        let ws = XLSX.utils.json_to_sheet(all_data);
-        XLSX.utils.book_append_sheet(wb, ws, "Remnants");
-        XLSX.writeFile(wb, "RemnantsExcel.xlsx");
-      }
-    });
-  };
-
-  const getOrderData = (complete) => {
-    fetchOrderExcel({ complete: complete }).then((data) => {
-      var all_data = [];
-
-      data.rows.forEach(function (element) {
-        var this_obj = {};
-        this_obj = { ...element };
-
-        element.order_product.forEach(function (in_obj) {
-          let temp_obj = {};
-          temp_obj = in_obj;
-          this_obj = Object.assign({}, this_obj, { ...temp_obj });
-          delete this_obj.order_product;
-          all_data.push(this_obj);
-        });
-      });
-
-      all_data.forEach(function (data) {
-        data.Статус_доставки = data.Статус_заказа ? "Завершен" : "В пути";
-        data.ФИ_пользователя = data.user.Имя + " " + data.user.Фамилия;
-        delete data.user;
-        delete data.ID;
-        data.Наименование_товара = data.product.Наименование_товара;
-        data.Бренд = data.product.brand.name;
-        data.Тип = data.product.type.name;
-        data.Цена_товара = data.product.Цена_товара;
-        data.Количество_товара = data.Количество_товара;
-        data.Итоговая_стоимость =
-          Number(data.Цена_товара) * Number(data.Количество_товара);
-        delete data.Статус_заказа;
-        delete data.product;
-      });
-
-      if (data && all_data) {
-        let wb = XLSX.utils.book_new();
-        let ws = XLSX.utils.json_to_sheet(all_data);
-        XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        XLSX.writeFile(wb, "OrdersExcel.xlsx");
-      }
-    });
-  };
-
-  const downloadPatternProduct = () => {
-    let data = [
-      {
-        name: "",
-        price: "",
-        productBrandId: "",
-        productTypeId: "",
-        description: "",
-      },
-    ];
-    let wb = XLSX.utils.book_new();
-    let ws = XLSX.utils.json_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, "Product");
-    XLSX.writeFile(wb, "ProductPattern.xlsx");
   };
 
   return (
@@ -261,7 +129,7 @@ const AdminDocument = () => {
                   <Button
                     className="w-100"
                     variant="success"
-                    onClick={() => getProductData()}
+                    onClick={() => getProductDataExcel()}
                   >
                     <AiFillFileExcel />
                     Получить данные о товарах
@@ -290,7 +158,7 @@ const AdminDocument = () => {
                       Скачайте шаблон файла формата .xlsx{" "}
                       <Button
                         variant="success"
-                        onClick={() => downloadPatternProduct()}
+                        onClick={() => downloadPatternProductExcel()}
                       >
                         <AiOutlineDownload />
                       </Button>
@@ -317,7 +185,7 @@ const AdminDocument = () => {
                   <Button
                     className="w-100"
                     variant="success"
-                    onClick={() => getUserData()}
+                    onClick={() => getUserDataExcel()}
                   >
                     <AiFillFileExcel />
                     Получить данные о пользователях
@@ -334,7 +202,7 @@ const AdminDocument = () => {
                   <Button
                     className="w-100"
                     variant="success"
-                    onClick={() => getTypeData()}
+                    onClick={() => getTypeDataExcel()}
                   >
                     <AiFillFileExcel />
                     Получить данные о типах
@@ -352,7 +220,7 @@ const AdminDocument = () => {
                   <Button
                     className="w-100"
                     variant="success"
-                    onClick={() => getBrandData()}
+                    onClick={() => getBrandDataExcel()}
                   >
                     <AiFillFileExcel />
                     Получить данные о брендах
@@ -426,7 +294,7 @@ const AdminDocument = () => {
                   <Button
                     className="w-100"
                     variant="primary"
-                    onClick={() => getRemnants()}
+                    onClick={() => getRemnantsExcel()}
                   >
                     <AiFillFileExcel />
                     Остатки товара
@@ -449,15 +317,18 @@ const AdminDocument = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Button className="mr-2" onClick={() => getOrderData("all")}>
+          <Button className="mr-2" onClick={() => getOrderDataExcel("all")}>
             Все
           </Button>
-          <Button className="mr-2" onClick={() => getOrderData("completed")}>
+          <Button
+            className="mr-2"
+            onClick={() => getOrderDataExcel("completed")}
+          >
             Завершенные
           </Button>
           <Button
             className="mr-2"
-            onClick={() => getOrderData("not-completed")}
+            onClick={() => getOrderDataExcel("not-completed")}
           >
             Не завершенные
           </Button>
