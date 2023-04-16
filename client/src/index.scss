@@ -1,7 +1,7 @@
 //Scroll-bar steles
 @import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @font-face {
   font-family: "CalSans-SemiBold";
@@ -57,8 +57,6 @@
   font-style: italic;
 }
 
-
-
 //---------Body Style-----------
 
 body::-webkit-scrollbar {
@@ -74,6 +72,10 @@ body::-webkit-scrollbar-thumb {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   font-style: normal;
+}
+
+* {
+  font-family: "Montserrat", sans-serif !important;
 }
 
 //---------Card Style-----------
@@ -99,11 +101,10 @@ $grey: #8d99ae;
 $black: #2b2d42;
 $white_red: #ef233c;
 $red: #d90429;
-$pink-red: #FFD3B6;
-$pink: #FFAAA5;
-$green: #DCEDC1;
-$white-green: #E0F9B5;
-
+$pink-red: #ffd3b6;
+$pink: #ffaaa5;
+$green: #dcedc1;
+$white-green: #e0f9b5;
 
 //----Color Grey
 $bg-gray-100: rgb(243 244 246);
@@ -115,3 +116,28 @@ $bg-gray-600: rgb(75 85 99);
 $bg-gray-700: rgb(55 65 81);
 $bg-gray-800: rgb(31 41 55);
 $bg-gray-900: rgb(17 24 39);
+
+a {
+  color: $red;
+}
+
+.nav-link {
+  color: $red;
+}
+
+.pagination {
+  .page-item {
+    .page-link {
+      color: $red !important;
+      border: 1px solid $red !important;
+    }
+
+    &.active {
+      .page-link {
+        background-color: $red !important;
+        border: 1px solid $red !important;
+        color: white !important;
+      }
+    }
+  }
+}

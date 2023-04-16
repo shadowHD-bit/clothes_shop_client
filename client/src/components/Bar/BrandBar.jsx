@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { Card, ListGroup, Row } from "react-bootstrap";
 import { Context } from "../..";
+import "./Bar.scss";
 
 const BrandBar = observer(({inFirstPage}) => {
   const { product } = useContext(Context);
@@ -13,7 +14,7 @@ const BrandBar = observer(({inFirstPage}) => {
 
   return (
     <ListGroup className="mt-3">
-      <ListGroup.Item variant="danger">Бренды</ListGroup.Item>
+      <ListGroup.Item className='bar-title'>Бренды</ListGroup.Item>
       <ListGroup.Item
         style={{ cursor: "pointer" }}
         active={'all' === product.selectedBrand}

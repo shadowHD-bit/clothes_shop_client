@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Dropdown, ListGroup } from "react-bootstrap";
 import { Context } from "../..";
 import { fetchProduct } from "../../http/productAPI";
-import "./bar.scss";
+import "./Bar.scss";
 
 const SortBar = observer(
   ({ onChange}) => {
@@ -21,7 +21,8 @@ const SortBar = observer(
     return (
       <Dropdown>
         <Dropdown.Toggle
-          variant="danger"
+          className="sort-toggle"
+          variant='danger'
           id="dropdown-basic"
           style={{ width: "100%" }}
         >

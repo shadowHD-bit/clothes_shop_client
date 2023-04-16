@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect } from "react";
 import { Context } from "../..";
 import { ListGroup } from "react-bootstrap";
-import "./bar.scss";
+import "./Bar.scss";
 
 const TypeBar = observer(({inFirstPage, state}) => {
   const { product } = useContext(Context);
@@ -20,7 +20,7 @@ const TypeBar = observer(({inFirstPage, state}) => {
 
   return (
     <ListGroup>
-      <ListGroup.Item variant="danger">Тип товара</ListGroup.Item>
+      <ListGroup.Item className='bar-title'>Тип товара</ListGroup.Item>
       <ListGroup.Item
         style={{ cursor: "pointer" }}
         active={"all" === product.selectedType}

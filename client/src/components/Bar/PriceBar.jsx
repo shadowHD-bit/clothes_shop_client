@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 import { Form, ListGroup } from 'react-bootstrap'
+import "./Bar.scss";
 
 const PriceBar = observer(({onChange, onChangeMin, inFirstPage}) => {
 
@@ -22,7 +23,7 @@ const PriceBar = observer(({onChange, onChangeMin, inFirstPage}) => {
   return (
     <div className='mt-2'>
       <ListGroup className="mt-3">
-        <ListGroup.Item variant="danger">Сортировать по цене</ListGroup.Item>
+        <ListGroup.Item className='bar-title'>Сортировать по цене</ListGroup.Item>
         <ListGroup.Item>
         От
         <Form.Control  className='mb-2' min={1} type="number" placeholder="Минимальная цена" value={minPrice} onChange={handleChangeMinPrice}/>
