@@ -10,22 +10,33 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import {
   createBadge,
   deleteBadge,
-  deleteBrand,
   fetchBadge,
 } from "../../../../http/productAPI";
 import "./BadgeAdmin.scss";
 import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
+import useRerender from "../../../../hooks/useRerender";
+import useToast from "../../../../hooks/useToast";
+import ToastError from "../../../../components/Toast/Toast";
+import BadgeItemAdmin from "../../../../components/AdminItems/BadgeItemAdmin";
 
 const BadgeAdmin = () => {
   const [showAlert, setShowAlert] = useState(true);
   const [badges, setBadges] = useState([]);
   const [valueBadge, setValueBadge] = useState("");
+
+  const { render, reRender } = useRerender();
+
+  const {
+    showToast,
+    handleOpenToast,
+    handleCloseToast,
+    setSysMessage,
+    sysMessage,
+  } = useToast();
 
   useEffect(() => {
     fetchBadge().then((data) => {
@@ -33,32 +44,27 @@ const BadgeAdmin = () => {
         setBadges(data.rows);
       }
     });
-  }, []);
+  }, [render]);
 
   const addedBadge = () => {
     const formData = new FormData();
     if (valueBadge != "") {
       formData.append("name", valueBadge);
-      createBadge(formData).then((data) => {
-        fetchBadge().then((data) => {
-          if (data) {
-            setValueBadge("");
-            setBadges(data.rows);
-          }
-        });
-      });
-    }
-  };
-
-  const deleteBad = (id) => {
-    deleteBadge(id).then((data) => {
-      fetchBadge().then((data) => {
-        if (data) {
+      createBadge(formData)
+        .then(() => {
+          setSysMessage("Бадж добавлен!");
+          handleOpenToast();
           setValueBadge("");
-          setBadges(data.rows);
-        }
-      });
-    });
+          reRender();
+        })
+        .catch((e) => {
+          setSysMessage(e.response.data.message);
+          handleOpenToast();
+        });
+    } else {
+      setSysMessage("Введите название баджа!");
+      handleOpenToast();
+    }
   };
 
   return (
@@ -117,17 +123,23 @@ const BadgeAdmin = () => {
         </Row>
         <Row className="mt-3">
           {badges?.map((item) => (
-            <ButtonGroup size="mb" style={{ width: "fit-content" }}>
-              <Button variant="danger" disabled={true}>
-                {item.name}
-              </Button>
-              <Button variant="danger" onClick={() => deleteBad(item.id)}>
-                <BsTrash />
-              </Button>
-            </ButtonGroup>
+            <BadgeItemAdmin
+              name={item.name}
+              id={item.id}
+              reRender={reRender}
+              key={item.id}
+            />
           ))}
         </Row>
       </Container>
+
+      {showToast && (
+        <ToastError
+          showToast={showToast}
+          handleCloseToast={handleCloseToast}
+          message={sysMessage}
+        />
+      )}
     </>
   );
 };

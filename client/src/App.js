@@ -2,13 +2,12 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Context } from ".";
-import AppRouter from "./components/AppRouter";
+import AppRouter from "./routes/AppRouter";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { Spinner } from "react-bootstrap";
 import { checkAuth, getData } from "./http/userAPI";
 import { getProductFromBasket } from "./http/productAPI";
-import { fetchSlider } from "./http/sliderAPI";
 import { getProductFromLikes } from "./http/likesAPI";
 import { fetchNotificationOneUser } from "./http/notificationAPI";
 

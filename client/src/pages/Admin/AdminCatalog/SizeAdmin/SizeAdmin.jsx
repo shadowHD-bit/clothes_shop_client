@@ -18,23 +18,25 @@ import {
 } from "../../../../http/productAPI";
 import "./SizeAdmin.scss";
 import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
+import useRerender from "../../../../hooks/useRerender";
+import useToast from "../../../../hooks/useToast";
+import ToastError from "../../../../components/Toast/Toast";
+import SizeItemAdmin from "../../../../components/AdminItems/SizeItemAdmin";
 
 const SizeAdmin = () => {
   const [showAlert, setShowAlert] = useState(true);
-
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-
-  const handleCloseSidebar = () => {
-    setShowSidebar(false);
-  };
-
   const [valueSize, setValueSize] = useState("");
-
   const [sizes, setSizes] = useState([]);
+
+  const { render, reRender } = useRerender();
+
+  const {
+    showToast,
+    handleOpenToast,
+    handleCloseToast,
+    setSysMessage,
+    sysMessage,
+  } = useToast();
 
   useEffect(() => {
     fetchSizes().then((data) => {
@@ -42,18 +44,14 @@ const SizeAdmin = () => {
         setSizes(data.rows);
       }
     });
-  }, []);
+  }, [render]);
 
   const sortSize = (arr) => {
-    //Sort
     let numbers = [];
     let strings = [];
-
     arr.forEach((e) => (isNaN(e.size) ? strings : numbers).push(e));
-
     numbers = numbers.sort((a, b) => Number(a.size) - Number(b.size));
     strings = strings.sort();
-
     return numbers.concat(strings);
   };
 
@@ -61,26 +59,21 @@ const SizeAdmin = () => {
     const formData = new FormData();
     if (valueSize != "") {
       formData.append("size", valueSize);
-      createSize(formData).then((data) => {
-        fetchSizes().then((data) => {
-          if (data) {
-            setValueSize("");
-            setSizes(data.rows);
-          }
-        });
-      });
-    }
-  };
-
-  const deleteSize = (id) => {
-    deleteSizeApi(id).then((data) => {
-      fetchSizes().then((data) => {
-        if (data) {
+      createSize(formData)
+        .then((data) => {
+          setSysMessage("Размер добавлен!");
+          handleOpenToast();
           setValueSize("");
-          setSizes(data.rows);
-        }
-      });
-    });
+          reRender();
+        })
+        .catch((e) => {
+          setSysMessage(e.response.data.message);
+          handleOpenToast();
+        });
+    }else{
+      setSysMessage("Введите размер!");
+      handleOpenToast();
+    }
   };
 
   return (
@@ -140,19 +133,23 @@ const SizeAdmin = () => {
         </Row>
         <Row className="mt-3">
           {sortSize(sizes).map((item) => (
-            <Col xs={1} className="mb-2">
-              <ButtonGroup size="mb">
-                <Button variant="danger" disabled={true}>
-                  {item.size}
-                </Button>
-                <Button variant="danger" onClick={() => deleteSize(item.id)}>
-                  <BsTrash />
-                </Button>
-              </ButtonGroup>
-            </Col>
+            <SizeItemAdmin
+              key={item.id}
+              id={item.id}
+              size={item.size}
+              reRender={reRender}
+            />
           ))}
         </Row>
       </Container>
+
+      {showToast && (
+        <ToastError
+          showToast={showToast}
+          handleCloseToast={handleCloseToast}
+          message={sysMessage}
+        />
+      )}
     </>
   );
 };
