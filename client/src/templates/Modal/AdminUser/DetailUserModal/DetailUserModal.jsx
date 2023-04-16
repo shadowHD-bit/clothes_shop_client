@@ -11,12 +11,17 @@ import {
   Tab,
   Tabs,
 } from "react-bootstrap";
-import "./modal.scss";
-import { fetchOrdersUser, getOneOrderProducts } from "../../http/orderAPI";
-import DetailOrdersForAdmin from "./DetailOrdersForAdmin";
-import ChangeRole from "./ChangeRole";
-import BannedUser from "./BannedUser";
-import UnbannedUser from "./UnbannedUser";
+import "./DetailUserModal.scss";
+import {
+  fetchOrdersUser,
+  getOneOrderProducts,
+} from "../../../../http/orderAPI";
+import DetailOrdersForAdmin from "../../../../components/modals/DetailOrdersForAdmin";
+import ChangeRole from "../ChangeRoleModal/ChangeRoleModal";
+import BannedUser from "../BannedUserModal/BannedUserModal";
+import UnbannedUser from "../UnbannedUserModal/UnbannedUserModal";
+import ModalTitle from "../../../../components/UI/ModalTitle/ModalTitle";
+import { dateParse } from "../../../../utils/helpers/dateParse.helpers";
 
 export default function DetailUser({ show, handleClose, data, reRender }) {
   const [orders, setOrders] = useState([]);
@@ -71,7 +76,7 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Информация о пользователе</Modal.Title>
+          <ModalTitle firstText={"Информация о"} secondText={"пользователе"} />
         </Modal.Header>
         <Modal.Body>
           <Row>
@@ -173,7 +178,11 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
                     controlId="floatingInputGrid"
                     label="Дата регистрации"
                   >
-                    <Form.Control type="text" disabled value={data.createdAt} />
+                    <Form.Control
+                      type="text"
+                      disabled
+                      value={dateParse(data.createdAt)}
+                    />
                   </FloatingLabel>
                 </Row>
                 <Row className="mt-2">
@@ -233,7 +242,7 @@ export default function DetailUser({ show, handleClose, data, reRender }) {
                               </Col>
                               <Col>
                                 <b>Дата: </b>
-                                {order.createdAt}
+                                {dateParse(order.createdAt)}
                               </Col>
                               <Col>
                                 <b>Статус: </b>

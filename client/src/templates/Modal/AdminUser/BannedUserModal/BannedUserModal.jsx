@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
-import { bannedUserApi } from "../../http/userAPI";
-import ToastError from "../Toast/Toast";
+import { bannedUserApi } from "../../../../http/userAPI";
+import ToastError from "../../../../components/Toast/Toast";
 
 export default function BannedUser({
   show,
@@ -13,15 +13,13 @@ export default function BannedUser({
   const [showToast, setShowToast] = useState(false);
   const [thisMessage, setThisMessage] = useState("");
 
-  const handleCloseToast = () => {
-    setShowToast(false);
-  };
+  const handleCloseToast = () => setShowToast(false);
 
   const [valueReason, setValueReason] = useState("");
 
   const banned = () => {
     bannedUserApi({ email: email, reason: valueReason, userId: userId })
-      .then((data) => {
+      .then(() => {
         handleClose();
         reRender();
       })
@@ -66,11 +64,13 @@ export default function BannedUser({
         </Modal.Footer>
       </Modal>
 
-      <ToastError
-        onHide={() => handleCloseToast()}
-        show={showToast}
-        message={thisMessage}
-      />
+      {showToast && (
+        <ToastError
+          handleCloseToast={handleCloseToast}
+          show={showToast}
+          message={thisMessage}
+        />
+      )}
     </>
   );
 }

@@ -24,26 +24,32 @@ const CreateBrand = ({ show, onHide, reRender }) => {
   }, [show]);
 
   const addBrand = () => {
-    const formData = new FormData();
-    formData.append("name", value);
-    if (file) {
-      formData.append("img", file);
+    if (value && file) {
+      const formData = new FormData();
+      formData.append("name", value);
+      if (file) {
+        formData.append("img", file);
+      }
+      createBrand(formData)
+        .then(() => {
+          onHide();
+          setSysMessage("Новый бренд добавлен!");
+          handleCloseToast();
+          handleOpenToast();
+          reRender();
+          setValue("");
+          setFile(null);
+        })
+        .catch((e) => {
+          setSysMessage(e.response.data.message);
+          handleCloseToast();
+          handleOpenToast();
+        });
+    } else {
+      setSysMessage("Заполните все поля!");
+      handleCloseToast();
+      handleOpenToast();
     }
-    createBrand(formData)
-      .then(() => {
-        onHide();
-        setSysMessage("Новый бренд добавлен!");
-        handleCloseToast();
-        handleOpenToast();
-        reRender();
-        setValue("");
-        setFile(null);
-      })
-      .catch((e) => {
-        setSysMessage(e.response.data.message);
-        handleCloseToast();
-        handleOpenToast();
-      });
   };
   return (
     <>

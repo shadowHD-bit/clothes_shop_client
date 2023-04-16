@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
-import { unbannedUserApi } from "../../http/userAPI";
+import { unbannedUserApi } from "../../../../http/userAPI";
+import { dateParse } from "../../../../utils/helpers/dateParse.helpers";
 
 export default function UnbannedUser({
   show,
@@ -32,14 +33,14 @@ export default function UnbannedUser({
           <Modal.Title>Разблокировка пользователя</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p style={{fontSize: 18}}>
+          <p style={{ fontSize: 18 }}>
             <b>Вы уверены, что хотите разблокировать пользователя?</b>
           </p>
           <p>
             <b>Причина блокировки:</b> {reason}
           </p>
           <p>
-            <b>Дата блокировки:</b> {bannedDate}
+            <b>Дата блокировки:</b> {dateParse(bannedDate)}
           </p>
         </Modal.Body>
         <Modal.Footer>

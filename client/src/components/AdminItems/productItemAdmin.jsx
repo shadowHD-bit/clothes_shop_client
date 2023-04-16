@@ -99,11 +99,13 @@ const ProductItemAdmin = ({ productItem, reRenderProduct }) => {
         idProduct={productItem.id}
       />
 
-      <ToastError
-        onHide={() => handleCloseToast()}
-        show={showToast}
-        message={thisMessage}
-      />
+      {showToast && (
+        <ToastError
+          handleCloseToast={() => handleCloseToast()}
+          show={showToast}
+          message={thisMessage}
+        />
+      )}
     </>
   );
 };

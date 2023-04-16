@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import DetailUser from "../modals/DetailUser";
+import DetailUser from "../../templates/Modal/AdminUser/DetailUserModal/DetailUserModal";
+import { dateParse } from "../../utils/helpers/dateParse.helpers";
+import useModal from "../../hooks/useModal";
 
 export default function UserItemAdmin({ props, reRender }) {
-    const [showDetail, setShowDetail] = useState(false);
+  const { showModal, handleOpenModal, handleCloseModal } = useModal();
 
-    const handleCloseDetail = () => setShowDetail(false);
-    const handleShowDetail = () => setShowDetail(true);
   return (
     <>
       <tr>
@@ -37,15 +37,20 @@ export default function UserItemAdmin({ props, reRender }) {
         </td>
         <td>{props.firstName + " " + props.secondName}</td>
         <td>{props.role}</td>
-        <td>{props.createdAt}</td>
+        <td>{dateParse(props.createdAt)}</td>
         <td>
-            <Button variant="primary" onClick={() => setShowDetail(true)}>
-                Подробнее
-            </Button>
+          <Button variant="primary" onClick={() => handleOpenModal()}>
+            Подробнее
+          </Button>
         </td>
       </tr>
 
-      <DetailUser reRender={reRender} show={showDetail} handleClose={handleCloseDetail} data={props}/>
+      <DetailUser
+        reRender={reRender}
+        show={showModal}
+        handleClose={handleCloseModal}
+        data={props}
+      />
     </>
   );
 }

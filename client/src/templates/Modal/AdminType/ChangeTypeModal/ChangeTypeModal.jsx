@@ -2,21 +2,37 @@ import React, { useState } from "react";
 import { Button, Col, Form, Image, Modal, Row } from "react-bootstrap";
 import { updateType } from "../../../../http/productAPI";
 import ModalTitle from "../../../../components/UI/ModalTitle/ModalTitle";
+import ToastError from "../../../../components/Toast/Toast";
+import useToast from "../../../../hooks/useToast";
 
 const ChangeType = ({ show, onHide, id, name, img_now, reRender }) => {
   const [typeName, setTypeName] = useState(name);
   const [file, setFile] = useState(null);
 
+  const {
+    showToast,
+    handleOpenToast,
+    handleCloseToast,
+    setSysMessage,
+    sysMessage,
+  } = useToast();
+
   const updateTypeInModal = () => {
-    const formData = new FormData();
-    formData.append("name", typeName);
-    if (file) {
-      formData.append("img", file);
+    if (typeName) {
+      const formData = new FormData();
+      formData.append("name", typeName);
+      if (file) {
+        formData.append("img", file);
+      }
+      updateType(id, formData).then((data) => {
+        onHide();
+        reRender();
+      });
+    } else {
+      setSysMessage("Заполните название типа!");
+      handleCloseToast();
+      handleOpenToast();
     }
-    updateType(id, formData).then((data) => {
-      onHide();
-      reRender();
-    });
   };
   return (
     <>
@@ -64,6 +80,14 @@ const ChangeType = ({ show, onHide, id, name, img_now, reRender }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {showToast && (
+        <ToastError
+          showToast={showToast}
+          handleCloseToast={handleCloseToast}
+          message={sysMessage}
+        />
+      )}
     </>
   );
 };

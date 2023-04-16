@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
-import { changeRoleUser } from "../../http/userAPI";
-import ToastError from "../Toast/Toast";
+import { changeRoleUser } from "../../../../http/userAPI";
+import ToastError from "../../../../components/Toast/Toast";
 
 export default function ChangeRole({
   show,
@@ -87,11 +87,13 @@ export default function ChangeRole({
         </Modal.Footer>
       </Modal>
 
-      <ToastError
-        onHide={() => handleCloseToast()}
-        show={showToast}
-        message={thisMessage}
-      />
+      {showToast && (
+        <ToastError
+          handleCloseToast={() => handleCloseToast()}
+          show={showToast}
+          message={thisMessage}
+        />
+      )}
     </>
   );
 }

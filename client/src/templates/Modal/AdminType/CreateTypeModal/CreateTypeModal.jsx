@@ -29,24 +29,30 @@ const CreateType = ({ show, onHide, reRender }) => {
   }, [show]);
 
   const addType = () => {
-    const formData = new FormData();
-    formData.append("name", value);
-    formData.append("img", file);
-    createType(formData)
-      .then(() => {
-        onHide();
-        setSysMessage("Новый тип добавлен!");
-        handleCloseToast();
-        handleOpenToast();
-        reRender();
-        setValue("");
-        setFile(null);
-      })
-      .catch((e) => {
-        setSysMessage(e.response.data.message);
-        handleCloseToast();
-        handleOpenToast();
-      });
+    if (value && file) {
+      const formData = new FormData();
+      formData.append("name", value);
+      formData.append("img", file);
+      createType(formData)
+        .then(() => {
+          onHide();
+          setSysMessage("Новый тип добавлен!");
+          handleCloseToast();
+          handleOpenToast();
+          reRender();
+          setValue("");
+          setFile(null);
+        })
+        .catch((e) => {
+          setSysMessage(e.response.data.message);
+          handleCloseToast();
+          handleOpenToast();
+        });
+    } else {
+      setSysMessage("Заполните все поля!");
+      handleCloseToast();
+      handleOpenToast();
+    }
   };
 
   return (

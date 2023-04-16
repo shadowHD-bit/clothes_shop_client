@@ -4,7 +4,6 @@ import { Button } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import ChangeBrand from "../../templates/Modal/AdminBrand/ChangeBrandModal/ChangeBrandModal";
-import DeleteBrandModal from "../modals/DeleteBrandModal";
 import DeleteSureModal from "../../templates/Modal/DeleteSureModal/DeleteSureModal";
 import { deleteBrand } from "../../http/productAPI";
 

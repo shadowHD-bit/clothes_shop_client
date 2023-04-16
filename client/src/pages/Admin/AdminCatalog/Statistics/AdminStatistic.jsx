@@ -1,16 +1,14 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Accordion, Alert, Button, Col, Container, Row } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
-import { AiOutlineMenuFold } from "react-icons/ai";
-import SideBar from "../../../../components/UI/AdminSideBar/SideBar";
 import "./AdminStatistic.scss";
 import RatingChart from "../../../../components/Charts/RatingChart";
 import ProductBuyCount from "../../../../components/Charts/ProductBuyCount";
 import UserRegistration from "../../../../components/Charts/UserRegistration";
 import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
+
 const AdminStatistic = () => {
   const [showAlert, setShowAlert] = useState(true);
 
@@ -22,7 +20,6 @@ const AdminStatistic = () => {
     <>
       <Container className="admin_container">
         <AdminTitle charter={'Раздел "Статистика"'} />
-
         <Row>
           <Col xs={12}>
             {showAlert ? (

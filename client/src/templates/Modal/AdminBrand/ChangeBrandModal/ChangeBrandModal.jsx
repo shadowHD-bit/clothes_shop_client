@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Image, Modal, Row } from "react-bootstrap";
 import { updateBrand } from "../../../../http/productAPI";
+import ToastError from "../../../../components/Toast/Toast";
+import useToast from "../../../../hooks/useToast";
 
 const ChangeBrand = ({ show, onHide, img_now, id, name, reRender }) => {
   const [brandName, setBrandName] = useState(name);
@@ -10,14 +12,28 @@ const ChangeBrand = ({ show, onHide, img_now, id, name, reRender }) => {
     setFile(e.target.files[0]);
   };
 
+  const {
+    showToast,
+    handleOpenToast,
+    handleCloseToast,
+    setSysMessage,
+    sysMessage,
+  } = useToast();
+
   const updateBrandInModal = () => {
-    const formData = new FormData();
-    formData.append("name", brandName);
-    formData.append("img", file);
-    updateBrand(id, formData).then((data) => {
-      onHide();
-      reRender();
-    });
+    if (brandName) {
+      const formData = new FormData();
+      formData.append("name", brandName);
+      formData.append("img", file);
+      updateBrand(id, formData).then((data) => {
+        onHide();
+        reRender();
+      });
+    } else {
+      setSysMessage("Заполните название бренда!");
+      handleCloseToast();
+      handleOpenToast();
+    }
   };
   return (
     <>
@@ -62,6 +78,14 @@ const ChangeBrand = ({ show, onHide, img_now, id, name, reRender }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {showToast && (
+        <ToastError
+          showToast={showToast}
+          handleCloseToast={handleCloseToast}
+          message={sysMessage}
+        />
+      )}
     </>
   );
 };
