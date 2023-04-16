@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button, Dropdown, Form, Row, Col } from "react-bootstrap";
 import { observer } from "mobx-react-lite";
-import { createRules } from "../../http/rulesAPI";
+import { createRules } from "../../../../http/rulesAPI";
 import { useForm } from "react-hook-form";
-import "./modal.scss";
-import { createCoupon } from "../../http/couponAPI";
+import "./CreateCouponModal.scss";
+import { createCoupon } from "../../../../http/couponAPI";
+import ModalTitle from "../../../../components/UI/ModalTitle/ModalTitle";
 
-const CreateCoupon = observer(({ show, reRender, onHide }) => {
+const CreateCoupon = ({ show, reRender, onHide }) => {
   const {
     register,
     handleSubmit,
@@ -27,13 +28,11 @@ const CreateCoupon = observer(({ show, reRender, onHide }) => {
   return (
     <Modal show={show} onHide={onHide} size="xl" centered>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Добавить купон
-        </Modal.Title>
+        <ModalTitle firstText={"Добавить"} secondText={"купон"} />
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Label>Введите код купона:</Form.Label>
+          <Form.Label className="added-label">Введите код купона:</Form.Label>
           <Form.Control type="text" {...register("code", { required: true })} />
           {errors.code && (
             <div className="alert_error_container">
@@ -42,7 +41,9 @@ const CreateCoupon = observer(({ show, reRender, onHide }) => {
               </p>
             </div>
           )}
-          <Form.Label>Введите процент скидки:</Form.Label>
+          <Form.Label className="added-label mt-3">
+            Введите процент скидки:
+          </Form.Label>
           <Form.Control
             type="number"
             {...register("discount", { required: true })}
@@ -54,18 +55,13 @@ const CreateCoupon = observer(({ show, reRender, onHide }) => {
               </p>
             </div>
           )}
-          <Button variant="outline-success" type="submit">
+          <Button variant="outline-success mt-3" type="submit">
             Добавить
           </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="outline-danger" onClick={onHide}>
-          Закрыть
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
-});
+};
 
 export default CreateCoupon;

@@ -1,60 +1,28 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Col,
-  Container,
-  Form,
-  Row,
-} from "react-bootstrap";
-import { BsTrash } from "react-icons/bs";
-import CreateCoupon from "../../../../components/modals/CreateCoupon";
-import { deleteCoupon, fetchCoupons } from "../../../../http/couponAPI";
+import { Alert, Button, Col, Container, Row } from "react-bootstrap";
+import { fetchCoupons } from "../../../../http/couponAPI";
 
 import "./AdminCoupons.scss";
 import AdminTitle from "../../../../components/UI/AdminTitle/AdminTitle";
+import CouponsItemAdmin from "../../../../components/AdminItems/CouponsItemAdmin";
+import CreateCoupon from "../../../../templates/Modal/AdminCoupons/CreateCouponsModal/CreateCouponModal";
+import useRerender from "../../../../hooks/useRerender";
+import useModal from "../../../../hooks/useModal";
 
 const AdminCoupons = () => {
   const [showAlert, setShowAlert] = useState(true);
-
   const [coupons, setCoupons] = useState([]);
 
-  useEffect(() => {
-    fetchCoupons().then((data) => {
-      setCoupons(data.rows);
-    });
-  }, []);
-
-  const [createModalState, setCreateModalState] = useState(false);
-
-  const handleShowCreateModal = () => {
-    setCreateModalState(true);
-  };
-
-  const handleCloseCreateModal = () => {
-    setCreateModalState(false);
-  };
-
-  const [rerender, setRerender] = useState(false);
+  const { render, reRender } = useRerender();
+  const { showModal, handleOpenModal, handleCloseModal } = useModal();
 
   useEffect(() => {
     fetchCoupons().then((data) => {
       setCoupons(data.rows);
     });
-  }, [rerender]);
-
-  const reRender = () => {
-    setRerender(!rerender);
-  };
-
-  const deleteCouponInAdmin = (id) => {
-    deleteCoupon(id).then(() => {
-      reRender();
-    });
-  };
+  }, [render]);
 
   return (
     <>
@@ -91,36 +59,28 @@ const AdminCoupons = () => {
         </Row>
         <Row>
           <Col>
-            <Button
-              variant="outline-success"
-              onClick={() => handleShowCreateModal()}
-            >
+            <Button variant="outline-success" onClick={() => handleOpenModal()}>
               Добавить
             </Button>
           </Col>
         </Row>
         <Row className="mt-3">
           {coupons?.map((item) => (
-            <ButtonGroup
-              size="mb"
-              style={{ width: "min-content" }}
+            <CouponsItemAdmin
               key={item.id}
-            >
-              <Button variant="danger" disabled={true}>
-                {item.code} ({item.discount}%)
-              </Button>
-              <Button variant="danger">
-                <BsTrash onClick={() => deleteCouponInAdmin(item.id)} />
-              </Button>
-            </ButtonGroup>
+              code={item.code}
+              id={item.id}
+              discount={item.discount}
+              reRender={reRender}
+            />
           ))}
         </Row>
       </Container>
 
       <CreateCoupon
-        show={createModalState}
+        show={showModal}
         reRender={reRender}
-        onHide={handleCloseCreateModal}
+        onHide={handleCloseModal}
       />
     </>
   );
