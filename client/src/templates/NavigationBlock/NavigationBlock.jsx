@@ -2,22 +2,39 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 import "./NavigationBlock.scss";
-import { FaBuilding, FaLocationArrow, FaQuoteRight, FaTruck } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaLocationArrow,
+  FaQuoteRight,
+  FaTruck,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ABOUT_ROUTE, DELIVERY_ROUTE, LOCATIONPLACES_ROUTE, QUESTION_ROUTE, REFUND_ROUTE, RULES_ROUTE } from "../../utils/consts";
+import {
+  ABOUT_ROUTE,
+  DELIVERY_ROUTE,
+  LOCATIONPLACES_ROUTE,
+  QUESTION_ROUTE,
+  REFUND_ROUTE,
+  RULES_ROUTE,
+} from "../../utils/consts";
 import { IoMdDocument } from "react-icons/io";
 import { AiOutlineReload } from "react-icons/ai";
 
-export default function NavigationBlock() {
+export default function NavigationBlock({ nonTitle }) {
   return (
     <>
       <Container className="navigation_block" fluid>
         <Container>
-          <Row>
-            <p className="navigation_block_title">
-              <span className="red">Раздел </span> навигации
-            </p>
-          </Row>
+          {nonTitle ? (
+            ""
+          ) : (
+            <Row>
+              <p className="navigation_block_title">
+                <span className="red">Раздел </span> навигации
+              </p>
+            </Row>
+          )}
+
           <Row>
             <Col xs={12} sm={6} md={4}>
               <Link to={QUESTION_ROUTE}>

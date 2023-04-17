@@ -47,6 +47,7 @@ import ErrorAddQuestionModal from "../../components/UI/Modals/ErrorAddQuestionMo
 import { Rating } from "@material-ui/lab";
 import SizeProductModal from "../../components/UI/Modals/SizeProductModal/SizeProductModal";
 import { addHistoryView } from "../../http/historyAPI";
+import NavigationBlock from "../../templates/NavigationBlock/NavigationBlock";
 
 const SimpleProduct = observer(() => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -86,10 +87,12 @@ const SimpleProduct = observer(() => {
   useEffect(() => {
     fetchOneProduct(id).then((data) => setProduct(data));
   }, [id]);
-  const [sizes, setSizes] = useState([{size: {id: 0}}]);
+  const [sizes, setSizes] = useState([{ size: { id: 0 } }]);
 
   useEffect(() => {
-    fetchSizesOneProduct(id).then((data) => setSizes(data.filter(item => item.count !=0)));
+    fetchSizesOneProduct(id).then((data) =>
+      setSizes(data.filter((item) => item.count != 0))
+    );
   }, []);
   ////
 
@@ -208,9 +211,6 @@ const SimpleProduct = observer(() => {
     }
   };
 
-  console.log(QA);
-  //////////
-
   return (
     <>
       <Container className="product_container">
@@ -313,67 +313,93 @@ const SimpleProduct = observer(() => {
           </Col>
           <Col xs={12} md={12} xl={6} className="main_info_product">
             <Row>
-              <p className="title_product">{product.name}</p>
-              <p className="product_code">Код товара: {product.id}</p>
-            </Row>
-            <Row>
-              <p className="price_product">{product.price} РУБ</p>
-            </Row>
-            <Row className="size_product">
-              Размер:
-              <Form.Select
-                onChange={(e) => setChangedSize(e.target.value)}
-                aria-label="Default select example"
-              >
-                {sortSize(sizes).map((item) => (
-                  <option value={item.size.id}>
-                    {item.size.size} ({item.count} шт.)
-                  </option>
-                ))}
-              </Form.Select>
-              <p
-                onClick={() => handlerShowSizeProduct()}
-                className="size_guide"
-              >
-                Подробнее о размере
-              </p>
-            </Row>
-            <Row className="mt-3">
-              <Col xs={12} md={6} className="add_btn_container">
-                {isProductInBasket(product) ? (
-                  <button
-                    class="cart_btn"
-                    onClick={() => addProductInBasket(product)}
-                    disabled={!user.isAuth ? true : false}
+              <Col xs={12} className="m-2">
+                <Row>
+                  <p className="product_card-title">
+                    <span className="red">Наименование</span> товара
+                  </p>
+                </Row>
+                <Row>
+                  <p className="title_product">{product.name}</p>
+                  <p className="product_code">Код товара: {product.id}</p>
+                </Row>
+                <Row>
+                  <p className="product_card-title">
+                    <span className="red">Стоимость</span> товара
+                  </p>
+                </Row>
+                <Row>
+                  <p className="price_product">{product.price} РУБ</p>
+                </Row>
+                <Row>
+                  <p className="product_card-title">
+                    <span className="red">Размеры</span> товара
+                  </p>
+                </Row>
+                <Row className="size_product">
+                  <Form.Select
+                    onChange={(e) => setChangedSize(e.target.value)}
+                    aria-label="Default select example"
                   >
-                    <BsCartPlus /> Добавить в корзину
-                  </button>
-                ) : (
-                  <a href={BASKET_ROUTE}>
-                    <button class="cart_btn_success">
-                      <BsCheckLg /> Уже в корзине
-                    </button>
-                  </a>
-                )}
-              </Col>
-              <Col xs={12} md={6} className="add_btn_container">
-                {isProductInLikes(product) ? (
-                  <button
-                    class="likes_btn"
-                    onClick={() => addProductInLikes(product)}
-                    disabled={!user.isAuth ? true : false}
+                    {sortSize(sizes).map((item) => (
+                      <option value={item.size.id}>
+                        {item.size.size} ({item.count} шт.)
+                      </option>
+                    ))}
+                  </Form.Select>
+                  <p
+                    onClick={() => handlerShowSizeProduct()}
+                    className="size_guide"
                   >
-                    <BsHeart /> Добавить в избранное
-                  </button>
-                ) : (
-                  <button
-                    class="likes_btn_success"
-                    onClick={() => likes.setDeleteItemLikes(product, true)}
-                    disabled={!user.isAuth ? true : false}
-                  >
-                    <BsHeart /> В избранном
-                  </button>
-                )}
+                    Подробнее о размере
+                  </p>
+                </Row>
+                <Row className="mt-3">
+                  <Col xs={12} md={6} className="add_btn_container">
+                    {isProductInBasket(product) ? (
+                      <button
+                        class="cart_btn"
+                        onClick={() => addProductInBasket(product)}
+                        disabled={!user.isAuth ? true : false}
+                      >
+                        <BsCartPlus /> Добавить в корзину
+                      </button>
+                    ) : (
+                      <a href={BASKET_ROUTE}>
+                        <button class="cart_btn_success">
+                          <BsCheckLg /> Уже в корзине
+                        </button>
+                      </a>
+                    )}
+                  </Col>
+                  <Col xs={12} md={6} className="add_btn_container">
+                    {isProductInLikes(product) ? (
+                      <button
+                        class="likes_btn"
+                        onClick={() => addProductInLikes(product)}
+                        disabled={!user.isAuth ? true : false}
+                      >
+                        <BsHeart /> Добавить в избранное
+                      </button>
+                    ) : (
+                      <button
+                        class="likes_btn_success"
+                        onClick={() => likes.setDeleteItemLikes(product, true)}
+                        disabled={!user.isAuth ? true : false}
+                      >
+                        <BsHeart /> В избранном
+                      </button>
+                    )}
+                  </Col>
+                </Row>
+                <Row>
+                  <p className="product_card-title mt-5">
+                    <span className="red">Дополнительная</span> информация
+                  </p>
+                </Row>
+                <Row>
+                  <NavigationBlock nonTitle />
+                </Row>
               </Col>
             </Row>
           </Col>
@@ -454,7 +480,9 @@ const SimpleProduct = observer(() => {
                                     <Col xs={12} md={12}>
                                       <Card className="card_question">
                                         <Card.Header className="d-flex flex-row align-items-center">
-                                          {question.question.user.avatar.toString().substring(0, 4) == "http" ? (
+                                          {question.question.user.avatar
+                                            .toString()
+                                            .substring(0, 4) == "http" ? (
                                             <div
                                               className="avatar_profile"
                                               style={{
@@ -467,7 +495,8 @@ const SimpleProduct = observer(() => {
                                               style={{
                                                 backgroundImage: `url(${
                                                   process.env
-                                                    .REACT_APP_API_URL + 'avatars/' +
+                                                    .REACT_APP_API_URL +
+                                                  "avatars/" +
                                                   question.question.user.avatar
                                                 })`,
                                               }}
@@ -486,7 +515,9 @@ const SimpleProduct = observer(() => {
                                     <Col xs={12} md={12}>
                                       <Card className="card_answer">
                                         <Card.Header className="d-flex flex-row align-items-center">
-                                          {question.answer.user.avatar.toString().substring(0, 4) == "http" ? (
+                                          {question.answer.user.avatar
+                                            .toString()
+                                            .substring(0, 4) == "http" ? (
                                             <div
                                               className="avatar_profile"
                                               style={{
@@ -499,7 +530,8 @@ const SimpleProduct = observer(() => {
                                               style={{
                                                 backgroundImage: `url(${
                                                   process.env
-                                                    .REACT_APP_API_URL +'avatars/' +
+                                                    .REACT_APP_API_URL +
+                                                  "avatars/" +
                                                   question.answer.user.avatar
                                                 })`,
                                               }}
@@ -656,10 +688,10 @@ const SimpleProduct = observer(() => {
                     {reviews?.length != 0 ? (
                       <p className="quest_about_text text-center">
                         Рейтинг составляет{" "}
-                        {reviews
-                          ?.map((i) => i.rate)
-                          .reduce((a, b) => a + b)/(reviews?.length)}{" "}
-                        балл(-а, -ов) и основан на {reviews?.length} отывах(-е)...
+                        {reviews?.map((i) => i.rate).reduce((a, b) => a + b) /
+                          reviews?.length}{" "}
+                        балл(-а, -ов) и основан на {reviews?.length}{" "}
+                        отывах(-е)...
                       </p>
                     ) : (
                       <p className="quest_about_text text-center">

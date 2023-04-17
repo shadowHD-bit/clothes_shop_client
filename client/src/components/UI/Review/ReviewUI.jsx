@@ -89,11 +89,11 @@ const ReviewUI = ({
         {img_review != null || img_review2 != null || img_review3 != null ? (
           <Card.Footer>
             <Row>
-              <Col xs={3}>
+              <Col xs={"auto"}>
                 {img_review != null ? (
                   <img
-                    width={"100%"}
-                    src={
+                  width={"200px"}
+                  src={
                       process.env.REACT_APP_API_URL + "reviews/" + img_review
                     }
                   />
@@ -101,10 +101,10 @@ const ReviewUI = ({
                   ""
                 )}
               </Col>
-              <Col xs={3}>
+              <Col xs={"auto"}>
                 {img_review2 != null ? (
                   <img
-                    width={"100%"}
+                    width={"200px"}
                     src={
                       process.env.REACT_APP_API_URL + "reviews/" + img_review2
                     }
@@ -113,11 +113,11 @@ const ReviewUI = ({
                   ""
                 )}
               </Col>
-              <Col xs={3}>
+              <Col xs={"auto"}>
                 {img_review3 != null ? (
                   <img
-                    width={"100%"}
-                    src={
+                  width={"200px"}
+                  src={
                       process.env.REACT_APP_API_URL + "reviews/" + img_review3
                     }
                   />

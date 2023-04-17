@@ -6,8 +6,7 @@
   font-family: "Montserrat", sans-serif;
   margin-top: 50px;
 
-
-  .avatar_profile{
+  .avatar_profile {
     width: 35px;
     height: 35px;
     background-position: center;
@@ -18,11 +17,9 @@
     margin-right: 5px;
   }
 
-  
   .main_info_product {
     .title_product {
       font-size: 30px;
-      font-weight: bold;
       margin: 0;
       padding: 0;
     }
@@ -43,17 +40,18 @@
       cursor: pointer;
       margin-top: 10px;
 
-      &:hover{
+      &:hover {
         color: $red;
       }
     }
 
     .price_product {
-      font-size: 30px;
-      font-weight: 500;
-      margin: 20px 0;
+      font-size: 25px;
       padding: 0;
-      color: $red;
+      color: black;
+      b {
+        font-size: 30px;
+      }
     }
 
     .color_product,
@@ -70,9 +68,10 @@
 
     .cart_btn {
       border: none;
-      border-radius: 30px;
+      border-radius: 10px;
       padding: 10px;
       width: 100%;
+      margin-top: 5px;
       background-color: $red;
       color: white;
 
@@ -80,15 +79,16 @@
         background-color: $white_red;
       }
 
-      &:disabled{
+      &:disabled {
         background-color: rgb(226, 85, 85);
       }
     }
 
     .cart_btn_success {
       border: none;
-      border-radius: 30px;
+      border-radius: 10px;
       padding: 10px;
+      margin-top: 5px;
       width: 100%;
       background-color: rgb(54, 148, 54);
       color: white;
@@ -100,9 +100,10 @@
 
     .likes_btn {
       border: none;
-      border-radius: 30px;
+      border-radius: 10px;
       padding: 10px;
       width: 100%;
+      margin-top: 5px;
       background-color: rgb(102, 89, 224);
       color: white;
 
@@ -110,15 +111,15 @@
         background-color: rgb(86, 84, 204);
       }
 
-      
-      &:disabled{
+      &:disabled {
         background-color: rgb(137, 135, 236);
       }
     }
 
     .likes_btn_success {
       border: none;
-      border-radius: 30px;
+      border-radius: 10px;
+      margin-top: 5px;
       padding: 10px;
       width: 100%;
       background-color: rgb(119, 209, 250);
@@ -204,7 +205,8 @@
 
   .card_qa {
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;
+    box-shadow: none;
     position: relative;
   }
 
@@ -212,7 +214,6 @@
     width: 70%;
     float: left;
     box-shadow: none;
-    border: 1px solid $black;
     border-radius: 10px;
     padding: 2px !important;
   }
@@ -221,16 +222,15 @@
     width: 70%;
     float: right;
     box-shadow: none;
-    border: 1px solid $black;
     border-radius: 10px;
     padding: 2px !important;
+    margin-top: 10px;
   }
 
   .title_add {
     font-weight: bold;
     font-size: 20px;
   }
-
 }
 .question_btn {
   border: none;
@@ -244,12 +244,26 @@
   }
 }
 
-.quest_about_text{
+.quest_about_text {
   padding: 10px 0px;
 }
 
-.badge_span{
+.badge_span {
   border-radius: 50%;
   padding: 3px 8px;
   background-color: $white_red;
+  color: white;
+}
+
+.product_card-title {
+  font-size: 18px;
+  color: black;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  margin-top: 20px;
+
+  .red {
+    color: $red;
+  }
 }

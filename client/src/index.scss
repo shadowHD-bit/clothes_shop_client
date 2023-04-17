@@ -123,6 +123,10 @@ a {
 
 .nav-link {
   color: $red;
+
+  &:hover{
+    color: $white_red;
+  }
 }
 
 .pagination {
